@@ -1,0 +1,36 @@
+Software is a collection of instructions, data, or computer programs that are used to run machines and carry out particular activities
+
+Software engineering is the systematic approach to designing, developing, testing, and managing software systems. Software engineering involves the implementation of computer science, engineering principles, and mathematical concepts to create, test, and analyze software applications and systems that are efficient, reliable, and secure.
+
+types of software:
+
+Application software
+The most frequently used software is application software, which is a computer software package that performs a specific function for a user or, in some cases, for another application. An application can be self-contained, or it can be a group of programs that run the application for the user. 
+Examples :- graphics software, databases
+
+System software.
+. These software programs are designed to run a computer's application programs and hardware. System software coordinates the activities and functions of the hardware and software. In addition, it controls the operations of the computer hardware and provides an environment or platform for all the other types of software to work in.
+Examples :-operating system
+ 
+Driver software.
+Also known as device drivers, this software is often considered a type of system software. Device drivers control the devices and peripherals connected to a computer, helping them perform their specific tasks. Every device that's connected to a computer needs at least one device driver to function
+Examples :- keyboards,
+
+Middleware. 
+. The term middleware describes software that mediates between application and system software or between two different kinds of application software
+.Examples :- Excel and Word.
+
+Programming software.
+Computer programmers use programming software to write code. Programming software and programming languages, such as Java or Python, let developers develop, write, test and debug other software programs. 
+Examples :- compilers, 
+
+
+SDLC
+The software development lifecycle (SDLC) is the cost-effective and time-efficient process that development teams use to design and build high-quality software.
+
+
+1 PLANNING
+2 ANALYSIS
+3 DESINGING
+4 IMPLIMENTATIO
+5 TESTING
