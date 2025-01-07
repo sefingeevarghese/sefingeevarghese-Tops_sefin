@@ -1,0 +1,58 @@
+/* General Reset */
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Blog Post Container */
+  .blog-post {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title */
+  .title {
+    font-family: 'Lora', serif;
+    font-size: 2.5rem;
+    color: #222;
+    margin-bottom: 10px;
+  }
+  
+  /* Subtitle */
+  .subtitle {
+    font-family: 'Lora', serif;
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  /* Body Content */
+  .content {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 20px;
+    text-align: justify;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2rem;
+    }
+  
+    .subtitle {
+      font-size: 1.3rem;
+    }
+  
+    .content {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+  }
+  

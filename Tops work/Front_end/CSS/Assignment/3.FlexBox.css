@@ -1,0 +1,67 @@
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+  }
+  
+  /* Container styles */
+  .container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    min-height: 100vh; /* Full height of the viewport */
+  }
+  
+  /* Header styles */
+  .header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 24px;
+  }
+  
+  /* Content area styles */
+  .content-area {
+    display: flex;
+    flex: 1; /* Take up remaining space */
+    flex-direction: row; /* Align items horizontally */
+    gap: 0; /* Space between sidebar and main content */
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    background-color: #333;
+    color: white;
+    flex: 1; /* Takes 1 part of the available space */
+    padding: 20px;
+  }
+  
+  /* Main content styles */
+  .main-content {
+    background-color: white;
+    background-repeat: no-repeat;
+    color: white;
+    flex: 5; /* Takes 3 parts of the available space */
+    padding: 20px;
+    background-image: url(Images/Landscapes.jpg);
+    background-size: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Footer styles */
+  .footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .content-area {
+      flex-direction: column; /* Stack sidebar and main content vertically */
+    }
+  }
+  

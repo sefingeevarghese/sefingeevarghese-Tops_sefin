@@ -1,0 +1,55 @@
+/* Style the body */
+body {
+    background-color: rgb(202, 211, 22);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+/* Style the form container */
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: rgb(241, 87, 255);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(238, 42, 218, 0.712);
+}
+
+/* Style the form */
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: white;
+}
+
+/* Style form fields */
+.form-field {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid rgb(205, 50, 151);
+    border-radius: 5px;
+    font-size: 14px;
+    color:white
+}
+
+/* Style the submit button */
+#submit-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+/* Add hover effect to submit button */
+#submit-btn:hover {
+    background-color: rgb(243, 65, 207);
+}
