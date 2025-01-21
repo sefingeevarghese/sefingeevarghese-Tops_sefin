@@ -1,0 +1,64 @@
+*{
+    box-sizing: border-box;
+}
+.row{
+    display: flex;
+}
+
+.header{
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    text-align: center;
+    background-color: yellow;
+    color: red;
+    font-size:x-large;
+}
+
+.about{
+    width: 100%;
+    height: auto;
+}
+
+.navbar{
+    width: 100%;
+    height: auto;
+    background-color: blueviolet;
+    color: antiquewhite;
+    padding: 3px;
+    float: left;
+    }
+
+li{
+    display: inline;
+}
+
+.aside{
+    width: 30%;
+    height: auto;
+    background-color: antiquewhite;
+    float: left;
+    padding: 10px;
+    float: left
+}
+
+.section{
+
+    width: 70%;
+    height: auto;
+    float: left;
+  
+}
+
+.footer{
+    padding: 5px;
+    width: 100%;
+    height: auto;
+    background-color: black;
+}
+
+.box1{
+    width: 25%;
+    float: left;
+    color: white;
+}

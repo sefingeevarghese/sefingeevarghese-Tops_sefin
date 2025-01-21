@@ -1,0 +1,93 @@
+<!--
+
+
+background-origin : use for background-image  
+
+default : background-origin: padding-box
+
+
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .example1 {
+
+            border: 10px solid orange;
+            background: url(/Image/background_images.jpg);
+            background-repeat: no-repeat;
+            background-color: aqua;
+        }
+
+
+
+        .example2 {
+
+            border: 30px solid black;
+            padding: 35px;
+            background: url(/Image/background_images.jpg);
+            background-repeat: no-repeat;
+            background-color: aqua;
+            background-origin: border-box; 
+        }
+
+
+
+        .example3 {
+
+            border: 30px dotted yellow;
+            padding: 35px;
+            background: url(/Image/background_images.jpg);
+            background-repeat: no-repeat;
+            background-origin: content-box;
+            background-color: aqua;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p>padding-box by default <p>
+
+    <div class="example1">
+
+        <h2>padding-box by default </h2>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos obcaecati, sequi eaque quo asperiores</p>
+        <p>architecto modi. Nisi tempore rerum necessitatibus exercitationem assumenda cum, vero, maxime sequi</p>
+
+    </div>
+
+    <p>border-box</p>  
+    
+    <div class="example2">
+
+        <h2>border-box</h2>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos obcaecati, sequi eaque quo asperiores</p>
+        <p>architecto modi. Nisi tempore rerum necessitatibus exercitationem assumenda cum, vero, maxime sequi </p>
+
+    </div>
+
+   
+    <p>content-box</p>
+
+    <div class="example3">
+
+        <h2>content-box</h2>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos obcaecati, sequi eaque quo asperiores </p>
+        <p> architecto modi. Nisi tempore rerum necessitatibus exercitationem assumenda cum, vero, maxime sequi</p>
+
+    </div>
+
+    
+
+
+</body>
+
+</html>
