@@ -1,4 +1,4 @@
-.#include<stdio.h>
+#include<stdio.h>
 main()
 {
 	int n,i=1; //start //data member

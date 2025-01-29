@@ -1,0 +1,51 @@
+<!--
+
+print
+
+innerHTML document.getElementById('text').innerHTML="<H1>text hello<H1>"  
+innerText document.getElementById('text').innerText="<H1>text hello<H1>"
+value	  document.getElementById('text').value="text hello"
+
+
+get 
+
+var htmlcode=document.getElementById('test1').innerHTML"  
+var textcode=document.getElementById('test1').innerText"
+var valuecode=document.getElementById('test1').value"
+
+-->
+<p id="test1">
+
+</p>
+
+<script>
+  
+    document.getElementById('test1').innerText="<h1>Hello All</h1>"
+
+</script>
+
+<hr>
+
+<p id="test2"></p>
+
+<script>
+      document.getElementById('test2').innerHTML="<h1>Good Morning</h1>"
+</script>
+
+<hr>
+
+<p id="test3"></p>
+
+<script>
+       document.getElementById('test3').value="Sefin Geevarghese";
+</script>
+
+<hr>
+
+<h1 id="test4">Hii I Am Html Content</h1>
+
+<script>
+        var text=document.getElementById('test4').innerText;
+        document.write(text)
+
+</script>

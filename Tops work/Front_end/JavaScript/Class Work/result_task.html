@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        
+        body
+        {
+            background-color: orange;
+        }
+
+        script 
+        {
+            justify-items: center;
+            color: white;
+        }
+
+        .report{
+            justify-items: center;
+            padding: 10px;
+
+        }
+
+        button{
+            background-color: blueviolet;
+            color: white;
+        }
+
+        button:hover{
+            color:chocolate;
+            background-color: white;
+        }
+
+        input{
+            width: 400px;
+            padding: 10px;
+            border-radius: 7px 7px 7px 7px;
+            background-color: bisque;
+
+        }
+        
+        h2
+        {
+          color: white;
+        }
+
+        form
+        {
+          color:white;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<div class="report">
+    <h2>Marks </h2>
+    <form onsubmit="return result()"> 
+    English  : <br><br>
+    <input type="number"  id="English" placeholder="Enter English Marks" name="english" required min="0" max="100"><br><br>
+    Hindi : <br><br>
+    <input type="number"  id="Hindi" placeholder="Enter Hindi Marks" name="hindi" required min="0" max="100"><br><br>
+    Gujarati : <br><br>
+    <input type="number"  id="Gujarati" placeholder="Enter Gujarati Marks" name="gujarati" required min="0" max="100"><br><br>
+    <button>Submit</button>
+    </form>
+</div>
+
+<br>
+  <br>
+  
+  <h1 id="total"></h1>
+  <br>
+  <br>
+  <h1 id="per"></h1>
+  <br>
+  <br>
+  <h1 id="grade"></h1>
+
+  <script>
+
+    function result()
+    {
+        var english=document.getElementById('English').value;
+        var hindi=document.getElementById('Hindi').value;
+        var gujarati=document.getElementById('Gujarati').value;
+    
+
+    var total=+english + +hindi + +gujarati;
+    document.getElementById('total').innerText="Total is : "  + total;
+
+    var per=(total*100)/300;
+		document.getElementById('per').innerText="Per is :" + per +"%";
+		
+		
+		if(per>90)
+		{
+			document.getElementById('grade').innerText="Grade is : A ";
+			document.getElementById('grade').style.color="green";
+		}
+		else if(per>70)
+		{
+			document.getElementById('grade').innerText="Grade is : B ";
+			document.getElementById('grade').style.color="green";
+		}
+		else if(per>50)
+		{
+			document.getElementById('grade').innerText="Grade is : C ";
+			document.getElementById('grade').style.color="green";
+		}
+		else
+		{
+			document.getElementById('grade').innerText="Grade is : Fail ";
+			document.getElementById('grade').style.color="red";
+		}
+		
+		return false;
+	}
+	
+	
+  </script>
+</body>
+</html>
