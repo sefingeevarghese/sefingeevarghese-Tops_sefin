@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+
+
+<body>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() 
+  {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+<div class="container mt-3">
+  <h2>Filterable Table</h2>
+  <p>Type something in the input field to search the table for first names, last names or emails:</p>  
+	
+ <input class="form-control" id="myInput" type="text" placeholder="Search..">
+ <br>
+ <table class="table">
+    <thead class="table-bordered table-info text-center">
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody id="myTable" class="text-center">
+      <tr>
+        <td>Name</td>
+        <td>age</td>
+        <td>Gender</td>
+      </tr>
+      <tr>
+        <td>Prashant</td>
+        <td>24</td>
+        <td>male</td>
+      </tr>
+      <tr>
+        <td>khushal</td>
+        <td>22</td>
+        <td>male</td>
+      </tr>
+      <tr>
+        <td>sonaram</td>
+        <td>21</td>
+        <td>male</td>
+      </tr>
+	  
+	   <tr>
+        <td>lucky</td>
+        <td>23</td>
+        <td>male</td>
+      </tr>
+      <tr>
+        <td>himan</td>
+        <td>22</td>
+        <td>male</td>
+      </tr>
+      <tr>
+        <td>suresh</td>
+        <td>25</td>
+        <td>male</td>
+      </tr>
+      <tr>
+        <td>vanshu</td>
+        <td>18+</td>
+        <td>female</td>
+      </tr>
+      
+      <tr>
+        <td>priya</td>
+        <td>18+</td>
+        <td>female</td>
+      </tr>
+      
+      <tr>
+        <td>yash</td>
+        <td>26</td>
+        <td>male</td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+<div class="container mt-3">
+  <h2>Filterable List</h2>
+  <p>Type something in the input field to search the list for specific items:</p>  
+  <input class="form-control" id="myInput1" type="text" placeholder="Search..">
+  <br>
+  <ul class="list-group" id="myList">
+    <li class="list-group-item">First item</li>
+    <li class="list-group-item">Second item</li>
+    <li class="list-group-item">Third item</li>
+    <li class="list-group-item">Fourth</li>
+  </ul>  
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#myInput1").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myList li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+</body>
+</html>
