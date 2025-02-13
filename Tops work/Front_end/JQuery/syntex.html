@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+
+
+        // document.getElementById('test')  = $('#test') Basic syntax is: $(selector).action()  
+        
+        
+        $(document).ready(function(){
+            
+            $('.mybtn').click(function(){
+                $('p').hide();
+            })
+            
+         });
+        </script>
+
+<p>Hi how are you</p>
+
+<p>Hi how are you</p>
+<p>Hi how are you</p>
+<p>Hi how are you</p>
+<p>Hi how are you</p>
+<button class="mybtn"> Hide Element </button>
+
+</body>
+</html>
