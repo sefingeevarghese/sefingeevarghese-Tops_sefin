@@ -1,25 +1,15 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Oswald:wght@700&family=Montserrat:wght@800&display=swap');
 
-
- .head{
-  font-size:  800px;
-  font-weight: 900;
- }
-
- .para{
-  font-size: 800px;
-  font-weight: 900;
- }
 .custom-nav {
-  font-size: 30px; /* Large Font */
-  font-weight: 900; /* Extra Bold */
+  font-size: 20px; /* Large Font */
+  font-weight: 200; /* Extra Bold */
   font-family: 'Poppins', sans-serif; /* Modern Font */
   color: black !important;
   text-transform: uppercase;
   text-decoration: none;
   position: relative; /* Needed for underline effect */
   padding-bottom: 5px; /* Spacing for underline */
+  transition: color 0.3s ease; /* Smooth color transition */
 }
 
 .custom-nav::after {
@@ -30,7 +20,11 @@
   width: 0%;
   height: 3px; /* Thickness of underline */
   background-color: black;
-  transition: width 1.5s ease-in-out; /* Smooth animation over 1.5s */
+  transition: width 0.5s ease-in-out; /* Smooth animation over 0.5s */
+}
+
+.custom-nav:hover {
+  color: #ff0000 !important; /* Change color on hover */
 }
 
 .custom-nav:hover::after {
@@ -41,4 +35,3 @@ h1{
   font-size: 6em;
   font-weight: bolder;
 }
-
