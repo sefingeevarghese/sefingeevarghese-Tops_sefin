@@ -59,20 +59,7 @@ Number.MAX_SAFE_INTEGER
 Number.isInteger()
 Number.isSafeInteger()
 New Global Methods
-JavaScript Modules
-
--->
-
-
-<script>
-
-
-
-
-
-/*
-
-Var
+JavaScript ModuleVar
 
 Global Scope
 Variables declared with the var always have Global Scope.
@@ -80,9 +67,6 @@ Variables declared with the var always have Global Scope.
 Variables declared with the var keyword can NOT have block scope:
 
 
-var a;
-
-a=50;
 
 
 */
@@ -102,6 +86,8 @@ Variables declared with let cannot be Redeclared in the same scope
 {
   let x = 2;   // local 
 }
+// x can NOT// x can NOT be used here be used here
+
 // x can NOT be used here
 
 
@@ -117,6 +103,16 @@ Variables defined with const have Block Scope
 
 */
 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+<script>
+
 const PI = 3.141592653589793;
 PI = 3.14;      // This will give an error
 PI = PI + 10;   // This will also give an error
@@ -127,3 +123,14 @@ const PI;
 PI = 3.14159265359; // Incorrect
 
 </script>
+</head>
+<body>
+  
+</body>
+</html>
+
+
+
+
+
+

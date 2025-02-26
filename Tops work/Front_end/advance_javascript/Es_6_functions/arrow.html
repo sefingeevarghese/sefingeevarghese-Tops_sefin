@@ -3,36 +3,48 @@ Arrow functions were introduced in ES6.
 
 Arrow functions allow us to write shorter function syntax:   ()=>{  }
 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script>
 
-<script>
+		// simple
+		function sum(a,b)
+		{
+			document.write(a+b);
+		}
+		sum(8,7);
+		
+		//litral
+		const sum=function(x,y) 
+		{ 
+			document.write(x*y);  
+		};
+		sum(5,7);
+		
+		// arrow   onclick="()=>{  }"
+		var sum=(a,b)=>{
+		
+			document.write(a+b);
+		}
+		sum(8,7);
+		
+		
+		
+		const sum=()=>document.write('hello');
+		
+		
+	</script>
+	
+	
+	<!-- React <button onclick={()=>alert('hello')}></button>  -->
+</head>
+<body>
+	
+		
+</body>
+</html>
 
-	// simple
-	function sum(a,b)
-	{
-		document.write(a+b);
-	}
-	sum(8,7);
-	
-	//litral
-	const sum=function(x,y) 
-	{ 
-		document.write(x*y);  
-	};
-	sum(5,7);
-	
-	// arrow   onclick="()=>{  }"
-	var sum=(a,b)=>{
-	
-		document.write(a+b);
-	}
-	sum(8,7);
-	
-	
-	
-	const sum=()=>document.write('hello');
-	
-	
-</script>
-
-
-<!-- React <button onclick={()=>alert('hello')}></button>  -->
