@@ -75,21 +75,15 @@
     </div>
 
     <script>
-        // Function to get stored todos from cookies
-        function getTodosFromCookies() {
-            let cookies = document.cookie.split("; ");
-            for (let cookie of cookies) {
-                let [name, value] = cookie.split("=");
-                if (name === "todos") {
-                    return JSON.parse(decodeURIComponent(value));
-                }
-            }
-            return [];
+        // Function to get stored todos from localStorage
+        function getTodos() {
+            let todos = localStorage.getItem("todos");
+            return todos ? JSON.parse(todos) : [];
         }
 
-        // Function to save todos to cookies
-        function saveTodosToCookies(todos) {
-            document.cookie = "todos=" + encodeURIComponent(JSON.stringify(todos)) + "; path=/; max-age=" + (60 * 60 * 24 * 30);
+        // Function to save todos to localStorage
+        function saveTodos(todos) {
+            localStorage.setItem("todos", JSON.stringify(todos));
         }
 
         // Function to add a new todo item
@@ -98,9 +92,9 @@
             let todoText = input.value.trim();
             if (todoText === "") return;
 
-            let todos = getTodosFromCookies();
+            let todos = getTodos();
             todos.push(todoText);
-            saveTodosToCookies(todos);
+            saveTodos(todos);
 
             renderTodos();
             input.value = "";
@@ -111,7 +105,7 @@
             let todoList = document.getElementById("todoList");
             todoList.innerHTML = "";
 
-            let todos = getTodosFromCookies();
+            let todos = getTodos();
             todos.forEach(todo => {
                 let li = document.createElement("li");
                 li.textContent = todo;
@@ -128,4 +122,3 @@
 
 </body>
 </html>
-                                                
