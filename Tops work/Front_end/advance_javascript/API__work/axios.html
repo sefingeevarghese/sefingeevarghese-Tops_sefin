@@ -1,0 +1,123 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+	
+  <!-- axios cdn	-->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>	
+
+</head>
+<body>
+
+<div class="container mt-3">
+  <h2>Basic Table</h2>
+ 
+  <table id="data" class="table">
+	
+  </table>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+<script>
+	/*
+		Axios is a promise-based HTTP client designed for Node.js and browsers. 
+		With Axios, we can easily send asynchronous HTTP requests to REST APIs 
+		and perform create, read, update and delete operations.
+	
+		
+	
+	*/
+	
+	// in javascript we use
+	
+	/*
+	fetch('https://jsonplaceholder.typicode.com/posts')
+	.then((resp)=> resp.json())
+	.then((obj)=>  console.log(obj));
+	*/
+	
+	
+	// in React we use
+	
+	/*
+	axios.get(`https://jsonplaceholder.typicode.com/posts`)
+	.then((obj)=>{ console.log(obj.data)});
+   */
+   
+   
+   var fetchdata= async()=>{
+   
+		var obj=await axios.get(`https://jsonplaceholder.typicode.com/albums`);
+		console.log(obj.data);
+		showData(obj.data)
+   }
+   fetchdata();
+	
+	
+	function showData(myobj){
+		
+		var div=document.getElementById('data');
+		
+		for(data of myobj)
+		{
+			var html=`<tr>
+						<td>${data.id}</td>
+						<td>${data.title}</td>
+						<td>${data.body}</td>
+					 </tr>`;
+			div.insertAdjacentHTML('beforeend',html);		 
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	/*
+	
+	API CRUD
+	
+	
+	
+	
+	axios.get(`https://jsonplaceholder.typicode.com/posts`)  // GET all DATA
+	axios.get(`https://jsonplaceholder.typicode.com/posts/1`)  // GET single DATA
+	axios.get(`https://jsonplaceholder.typicode.com/posts?column=value`)  // GET particular column DATA
+	
+	
+	
+	obj= {userId:101,id: 101,title: "sunt aut" ,body: "quia et"}
+	axios.post(`https://jsonplaceholder.typicode.com/posts`,obj) // post : (insert) obj in api 
+	
+	
+	axios.delete(`https://jsonplaceholder.typicode.com/posts/5`)  //delete : 5 num id delete
+	
+	
+	obj= {userId:101,id: 101,title: "change name" ,body: "unpdated body"}
+	axios.put(`https://jsonplaceholder.typicode.com/posts/101`,obj)  // put : update single data 101 user
+																	// patch : update multiple data
+	
+	
+	
+	*/
+	
+	
+</script>
+
+

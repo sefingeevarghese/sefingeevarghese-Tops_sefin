@@ -160,14 +160,25 @@
     }
     button{
     padding: 10px;
-    background-color: rgba(48, 247, 8, 0.941);
-    border: 1px white solid;
+    background-color: rgba(247, 8, 199, 0.94);
+    border: 2px black solid;
     color:black;
     transition: 0.7s;
     font-family: monospace;
+    position:relative;
+    animation-name: sefin;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    transition: all 2s;
+    border-radius: 22px;
+    }
+
+    @keyframes sefin {
+      0%   {background-color: #38ada9; color: #f6e58d; left:0px; top:0px;}
+      100%   {background-color: #f6e58d; color: #38ada9; left:250px; top:0px;}
     }
     button:hover{
-    background-color: rgba(236, 225, 31, 0.938);
+    background-color: rgba(255, 0, 208, 0.94);
     color: white;
     }
 

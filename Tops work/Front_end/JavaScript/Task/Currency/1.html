@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .row img {
+            width: 80px;
+            height: auto;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .row input {
+            width: 60px;
+            padding: 5px;
+            text-align: center;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        h3 {
+            margin-top: 20px;
+        }
+
+        .delete-btn {
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Cash Counter</h2>
+        <div id="cashContainer">
+            <div class="row">
+                <img src="/img'/IMG-20250324-WA0037.jpg" alt="₹500">
+                <input type="number" id="note500" min="0" oninput="calculateTotal()">
+                <span>₹500 = </span> <span id="total500">0</span>
+            </div>
+
+            <div class="row">
+                <img src="/img'/IMG-20250324-WA0035.jpg" alt="₹200">
+                <input type="number" id="note200" min="0" oninput="calculateTotal()">
+                <span>₹200 = </span> <span id="total200">0</span>
+            </div>
+
+            <div class="row">
+                <img src="/img'/IMG-20250324-WA0033.jpg" alt="₹100">
+                <input type="number" id="note100" min="0" oninput="calculateTotal()">
+                <span>₹100 = </span> <span id="total100">0</span>
+            </div>
+
+            <div class="row">
+                <img src="/img'/IMG-20250324-WA0030.jpg" alt="₹50">
+                <input type="number" id="note50" min="0" oninput="calculateTotal()">
+                <span>₹50 = </span> <span id="total50">0</span>
+            </div>
+
+            <div class="row">
+                <img src="/img'/IMG-20250324-WA0036.jpg" alt="₹20">
+                <input type="number" id="note20" min="0" oninput="calculateTotal()">
+                <span>₹20 = </span> <span id="total20">0</span>
+            </div>
+
+            <div class="row">
+                <img src="/img'/IMG-20250324-WA0038.jpg" alt="₹5">
+                <input type="number" id="note5" min="0" oninput="calculateTotal()">
+                <span>₹5 = </span> <span id="total5">0</span>
+            </div>
+
+            <div class="row">
+                <img src="/img'/IMG-20250324-WA0031.jpg" alt="₹2">
+                <input type="number" id="note2" min="0" oninput="calculateTotal()">
+                <span>₹2 = </span> <span id="total2">0</span>
+            </div>
+
+            <div class="row">
+                <img src="/img'/IMG-20250324-WA0034.jpg" alt="₹1">
+                <input type="number" id="note1" min="0" oninput="calculateTotal()">
+                <span>₹1 = </span> <span id="total1">0</span>
+            </div>
+        </div>
+
+        <h3>Total Cash: ₹ <span id="totalCash">0</span></h3>
+        <h3>Total Notes: <span id="totalNotes">0</span></h3>
+        <h3>Amount in Words: <span id="amountInWords">Zero</span></h3>
+
+        <button onclick="resetValues()" class="delete-btn">Delete</button>
+    </div>
+
+    <script>
+        function calculateTotal() {
+            let denominations = [500, 200, 100, 50, 20, 5, 2, 1];
+            let totalCash = 0;
+            let totalNotes = 0;
+
+            denominations.forEach(value => {
+                let count = document.getElementById(`note${value}`).value || 0;
+                let subtotal = value * count;
+                totalCash += subtotal;
+                totalNotes += parseInt(count);
+                document.getElementById(`total${value}`).innerText = subtotal;
+            });
+
+            document.getElementById("totalCash").innerText = totalCash;
+            document.getElementById("totalNotes").innerText = totalNotes;
+            document.getElementById("amountInWords").innerText = convertToWords(totalCash);
+        }
+
+        function resetValues() {
+            let denominations = [500, 200, 100, 50, 20, 5, 2, 1];
+
+            denominations.forEach(value => {
+                document.getElementById(`note${value}`).value = "";
+                document.getElementById(`total${value}`).innerText = "0";
+            });
+
+            document.getElementById("totalCash").innerText = "0";
+            document.getElementById("totalNotes").innerText = "0";
+            document.getElementById("amountInWords").innerText = "Zero";
+        }
+
+        function convertToWords(num) {
+            const a = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
+            const b = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+            const c = ["Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+
+            if (num === 0) return "Zero";
+
+            function convert(n) {
+                if (n < 10) return a[n];
+                else if (n < 20) return c[n - 10];
+                else if (n < 100) return b[Math.floor(n / 10)] + " " + a[n % 10];
+                else if (n < 1000) return a[Math.floor(n / 100)] + " Hundred " + convert(n % 100);
+                else if (n < 100000) return convert(Math.floor(n / 1000)) + " Thousand " + convert(n % 1000);
+                else if (n < 10000000) return convert(Math.floor(n / 100000)) + " Lakh " + convert(n % 100000);
+                else return convert(Math.floor(n / 10000000)) + " Crore " + convert(n % 10000000);
+            }
+
+            return convert(num).trim();
+        }
+    </script>
+
+</body>
+</html>
