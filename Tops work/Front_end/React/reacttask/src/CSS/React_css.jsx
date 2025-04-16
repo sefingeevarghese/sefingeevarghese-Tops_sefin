@@ -1,4 +1,3 @@
-
 import React from 'react'
 
 import './mystyle1.css';
@@ -18,13 +17,13 @@ function React_css() {
 
        <hr />
 
-       <div className='item1'>
+       <div className='test1'>
             hello box 1
        </div>
        
        <hr />
        
-       <div className='item1'>
+       <div className='test1'>
             hello box 2
        </div>
        

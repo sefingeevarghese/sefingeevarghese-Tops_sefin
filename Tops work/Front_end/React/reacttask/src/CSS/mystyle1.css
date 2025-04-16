@@ -1,7 +1,6 @@
-.item1{
-    width :100px;
-    height :100px;
+.test1{
     background-color: aqua;
-    color: orange;
-     
+    color: blue;
+    height: 100px;
+    width: 100px;
 }
