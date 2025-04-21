@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FaPlane, FaGlobe, FaUsers, FaStar, FaAward, FaHandshake, FaQuoteLeft } from 'react-icons/fa';
 
 const AboutContainer = styled.div`
@@ -198,12 +198,6 @@ const AwardIcon = styled.div`
 `;
 
 const About = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
   const stats = [
     {
       icon: <FaPlane />,
@@ -348,6 +342,7 @@ const About = () => {
               transition={{ delay: index * 0.1 }}
             >
               <AwardIcon>{award.icon}</AwardIcon>
+
               <h3>{award.title}</h3>
               <p style={{ color: '#e94560', marginBottom: '0.5rem' }}>{award.year}</p>
               <p>{award.description}</p>

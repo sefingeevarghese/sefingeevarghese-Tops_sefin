@@ -1,7 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import ErrorBoundary from './components/ErrorBoundary';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
@@ -31,9 +30,5 @@ function App() {
     </ErrorBoundary>
   );
 }
-
-App.propTypes = {
-  // Add any props if needed in the future
-};
 
 export default App;
