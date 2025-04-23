@@ -1,0 +1,31 @@
+.card {
+    width: 100%;
+    max-width: 300px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.content {
+    padding: 15px;
+}
+
+.title {
+    color: #333;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.description {
+    color: #666;
+    font-size: 0.9em;
+    line-height: 1.4;
+} 

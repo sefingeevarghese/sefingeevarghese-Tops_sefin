@@ -1,26 +1,3 @@
-/*
-
-Props are arguments passed into React components.
-
-Props are passed to components via HTML attributes.
-props stands for properties.
-
-
-function Car(props) {
-  return <h2>I am a { props.title }!</h2>;
-}
-
-<Car title="SUV Car" />
-
-or
-
-function Car(title) {
-  return <h2>I am a { title }!</h2>;
-}
-
-<Car title="Car" />
-
-*/
 
 
 

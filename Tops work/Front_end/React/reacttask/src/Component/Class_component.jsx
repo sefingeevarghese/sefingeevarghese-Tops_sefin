@@ -1,50 +1,26 @@
+import React from 'react';
+import './Form.css';
 
-/*
-
-React Class Components
-
-Before React 16.8, Class components were the only way to track state and lifecycle on a React component. 
-Function components were considered "state-less".
-
-With the addition of Hooks, Function components are now almost equivalent to Class components. 
-The differences are so minor that you will probably never need to use a Class component in React.
-
-Even though Function components are preferred, 
-there are no current plans on removing Class components from React.
-
-class Car extends React.Component {
-  render() {
-    return <h2>Hi, I am a Car!</h2>;
-  }
-}
-  
-*/
-
-
-
-//rce
-/*
-import React, { Component } from 'react'
-
-export class Class_component extends Component {
+class Class_component extends React.Component {
   render() {
     return (
-      <div>Class_component</div>
-    )
+      <div className="form-container">
+        <h2>HTML Forms</h2>
+        <form action="/action_page.php">
+          <label htmlFor="fname">First name:</label>
+          <br />
+          <input type="text" id="fname" name="fname" defaultValue="John" />
+          <br />
+          <label htmlFor="lname">Last name:</label>
+          <br />
+          <input type="text" id="lname" name="lname" defaultValue="Doe" />
+          <br />
+          <br />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    );
   }
 }
 
-export default Class_component
-*/
-
-
-//rcc
-import React, { Component } from 'react'
-
-export default class Class_component extends Component {
-  render() {
-    return (
-      <div>Class_component</div>
-    )
-  }
-}
+export default Class_component;

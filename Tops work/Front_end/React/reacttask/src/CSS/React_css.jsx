@@ -4,32 +4,64 @@ import './mystyle1.css';
 import './mystyle2.css';
 
 function React_css() {
+    const inlineBoxStyle = {
+        width: '150px',
+        height: '150px',
+        backgroundColor: '#FF9800',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        fontWeight: 'bold',
+        margin: '20px',
+        borderRadius: '20px',
+        animation: 'bounce 2s infinite'
+    }
 
- var mystyle={color: 'pink', backgroundColor: 'red'}
+    return (
+        <div style={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center',
+            padding: '20px'
+        }}>
+            <style>
+                {`
+                    @keyframes bounce {
+                        0%, 100% {
+                            transform: translateY(0);
+                        }
+                        50% {
+                            transform: translateY(-20px);
+                        }
+                    }
+                `}
+            </style>
 
-  return (
-    <div>
-       <h1 style={{color: 'red', backgroundColor: 'yellow'}}>Hi i am inline css</h1>
+            <h1 style={{ 
+                color: '#333', 
+                textAlign: 'center',
+                marginBottom: '30px'
+            }}>
+                Animation Demo
+            </h1>
 
-       <hr />
+            {/* Pulsing Box */}
+            <div className='animated-box'>
+                Pulsing Box
+            </div>
 
-       <h1 style={mystyle}>Hi i am var store css</h1>
+            {/* Rotating Box */}
+            <div className='animated-box-2'>
+                Rotating Box
+            </div>
 
-       <hr />
-
-       <div className='test1'>
-            hello box 1
-       </div>
-       
-       <hr />
-       
-       <div className='test1'>
-            hello box 2
-       </div>
-       
-       
-    </div>
-  )
+            {/* Bouncing Box */}
+            <div style={inlineBoxStyle}>
+                Bouncing Box
+            </div>
+        </div>
+    )
 }
 
 export default React_css

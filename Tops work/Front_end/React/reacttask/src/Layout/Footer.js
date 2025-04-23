@@ -3,9 +3,8 @@ import React from 'react'
 function Footer() {
     return (
         <div>
-            <div className="mt-5 p-4 bg-dark text-white text-center">
-                <p>Footer</p>
-            </div>
+            <p>&copy; 2025 My Website. All rights reserved.</p>
+            
         </div>
 
     )
