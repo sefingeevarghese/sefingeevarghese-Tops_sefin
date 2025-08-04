@@ -1,12 +1,12 @@
 import React from 'react'
-import Header from '../Component/Header'
+import Hedaer from '../Component/Hedaer'
 import Footer from '../Component/Footer'
 import { Link } from 'react-router-dom'
 
 function PNF() {
   return (
     <div>
-            <Header title="Page Not Found" />
+            <Hedaer title="Page Not Found" />
             <div className="container mt-5">
                 <div className="row">
                     <div className="col-sm-12 text-center">
