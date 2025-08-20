@@ -78,13 +78,19 @@
   margin-top: 10px;
 }
 
-.login-button:hover {
+.login-button:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 
-.login-button:active {
+.login-button:active:not(:disabled) {
   transform: translateY(0);
+}
+
+.login-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .error-message {
@@ -97,6 +103,32 @@
   border: 1px solid #feb2b2;
 }
 
+.form-toggle {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.form-toggle p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin: 0;
+}
+
+.toggle-link {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.toggle-link:hover {
+  color: #5a67d8;
+}
+
 .demo-info {
   margin-top: 20px;
   padding: 15px;
@@ -106,9 +138,15 @@
 }
 
 .demo-info p {
-  margin: 0;
+  margin: 0 0 8px 0;
   color: var(--text-secondary);
   font-size: 14px;
+}
+
+.demo-info p:last-child {
+  margin-bottom: 0;
+  font-size: 12px;
+  opacity: 0.8;
 }
 
 @media (max-width: 480px) {
