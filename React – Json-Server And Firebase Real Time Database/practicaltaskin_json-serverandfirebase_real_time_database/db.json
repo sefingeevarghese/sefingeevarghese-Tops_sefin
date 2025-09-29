@@ -1,0 +1,56 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phone": "123-456-7890",
+      "city": "New York"
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "phone": "098-765-4321",
+      "city": "Los Angeles"
+    },
+    {
+      "id": "3",
+      "name": "Mike Johnson",
+      "email": "mike@example.com",
+      "phone": "555-123-4567",
+      "city": "Chicago"
+    },
+    {
+      "id": "59b9",
+      "name": "Sefin Geevarghese",
+      "email": "sefingeevarghese@gmail.com",
+      "phone": "9824935774",
+      "city": "Updated City"
+    },
+    {
+      "id": "8b50",
+      "name": "Sefin Geevarghese",
+      "email": "sefingeevarghese007@gmail.com",
+      "password": "Sebu#2001",
+      "createdAt": "2025-08-20T12:13:01.686Z",
+      "lastLogin": "2025-08-20T12:13:01.687Z"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "title": "First Post",
+      "content": "This is the first post content",
+      "author": "John Doe",
+      "date": "2024-01-15"
+    },
+    {
+      "id": "2",
+      "title": "Second Post",
+      "content": "This is the second post content",
+      "author": "Jane Smith",
+      "date": "2024-01-16"
+    }
+  ]
+}
