@@ -1,0 +1,20 @@
+
+<!--
+
+The insertAdjacentHTML() method inserts HTML code into a specified position.
+
+afterbegin	After the beginning of the element (first child)
+afterend	After the element
+beforebegin	Before the element
+beforeend	Before the end of the element (last child)
+
+-->
+
+
+<h1 id="myH2">Hello i am html</h1>
+
+<script>
+	const place = document.getElementById("myH2");
+	let html = "<p>My new paragraph.</p>";
+	place.insertAdjacentHTML("afterend", html);
+</script>

@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { CartProvider } from './Components/CartContext';
 import Index from "./pages/website/Index";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
@@ -9,7 +12,15 @@ import OurTeam from "./pages/website/OurTeam";
 import Contact from "./pages/website/Contact";
 import Testimonial from "./pages/website/Testimonial";
 import Notfound from "./pages/website/Notfound";
-import LoginSignup from './Components/LoginSignup';
+import Login from './Components/Login';
+import Signup from './Components/Signup';
+import Profile from './Components/Profile';
+import User_profile from './Components/User_profile';
+import Orders from './Components/Orders';
+import Cart from './Components/Cart';
+import User_after_auth from './Components/User_after_auth';
+import User_before_auth from './Components/User_before_auth';
+import Admin_after_auth from './Components/Admin_after_auth';
 
 // Admin Components
 import Admin_login from "./pages/admin/Admin_login";
@@ -18,45 +29,83 @@ import Add_categories from "./pages/admin/Add_categories";
 import Manage_categories from "./pages/admin/Manage_categories";
 import Add_product from "./pages/admin/Add_product";
 import Manage_product from "./pages/admin/Manage_product";
-import Manage_order from "./pages/admin/Manage_order";
 import View_cart from "./pages/admin/View_cart";
 import Manage_customer from "./pages/admin/Manage_customer";
 import Manage_contact from "./pages/admin/Manage_contact";
 
-// PrivateRoute component
-function PrivateRoute({ children }) {
-  const isAdmin = localStorage.getItem('isAdmin') === 'true';
-  return isAdmin ? children : <Navigate to="/admin-login" />;
+// Layout component for website pages
+function WebsiteLayout({ children }) {
+  return (
+    <>
+      <Header />
+      {children}
+      <Footer />
+    </>
+  );
 }
 
 function App() {
   return (
-    <>
+    <CartProvider>
       <BrowserRouter>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <Routes>
-          <Route path="/" element={<><Index /><Footer /></>}></Route>
-          <Route path="/about" element={<><About /><Footer /></>}></Route>
-          <Route path="/Services" element={<><Services /><Footer /></>}></Route>
-          <Route path="/ourteam" element={<><OurTeam /><Footer /></>}></Route>
-          <Route path="/contact" element={<><Contact /><Footer /></>}></Route>
-          <Route path="/testimonial" element={<><Testimonial /><Footer /></>}></Route>
-          <Route path="/notfound" element={<><Notfound /><Footer /></>}></Route>
-          <Route path="/loginsignup" element={<LoginSignup />}></Route>
+          {/* Website Routes */}
+          <Route path="/" element={<WebsiteLayout><Index /></WebsiteLayout>} />
+          <Route path="/about" element={<WebsiteLayout><About /></WebsiteLayout>} />
+          <Route path="/Services" element={<WebsiteLayout><Services /></WebsiteLayout>} />
+          <Route path="/ourteam" element={<WebsiteLayout><OurTeam /></WebsiteLayout>} />
+          <Route path="/contact" element={<WebsiteLayout><Contact /></WebsiteLayout>} />
+          <Route path="/testimonial" element={<WebsiteLayout><Testimonial /></WebsiteLayout>} />
+          <Route path="/notfound" element={<WebsiteLayout><Notfound /></WebsiteLayout>} />
+          
+          {/* Public Auth Routes - Prevent authenticated users from accessing */}
+          <Route path="/login" element={<User_before_auth><Login /></User_before_auth>} />
+          <Route path="/signup" element={<User_before_auth><Signup /></User_before_auth>} />
+          
+          {/* Protected User Routes */}
+          <Route path="/profile" element={<User_after_auth><Profile /></User_after_auth>} />
+          <Route path="/user-profile" element={<User_after_auth><User_profile /></User_after_auth>} />
+          <Route path="/orders" element={<User_after_auth><Orders /></User_after_auth>} />
+          <Route path="/cart" element={<WebsiteLayout><Cart /></WebsiteLayout>} />
 
           {/* Admin Routes */}
-          <Route path="/admin" element={<Admin_login />}></Route>
-          <Route path="/admin-login" element={<Admin_login />}></Route>
-          <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}></Route>
-          <Route path="/add_categories" element={<PrivateRoute><Add_categories /></PrivateRoute>}></Route>
-          <Route path="/manage_categories" element={<PrivateRoute><Manage_categories /></PrivateRoute>}></Route>
-          <Route path="/add_product" element={<PrivateRoute><Add_product /></PrivateRoute>}></Route>
-          <Route path="/manage_product" element={<PrivateRoute><Manage_product /></PrivateRoute>}></Route>
-          <Route path="/view_cart" element={<PrivateRoute><View_cart /></PrivateRoute>}></Route>
-          <Route path="/manage_customer" element={<PrivateRoute><Manage_customer /></PrivateRoute>}></Route>
-          <Route path="/manage_contact" element={<PrivateRoute><Manage_contact /></PrivateRoute>}></Route>
+          <Route path="/admin" element={<Navigate to="/admin-login" />} />
+          <Route path="/admin-login" element={<Admin_login />} />
+          <Route path="/admin/dashboard" element={<Admin_after_auth><Dashboard /></Admin_after_auth>} />
+          <Route path="/admin/add-categories" element={<Admin_after_auth><Add_categories /></Admin_after_auth>} />
+          <Route path="/admin/manage-categories" element={<Admin_after_auth><Manage_categories /></Admin_after_auth>} />
+          <Route path="/admin/add-product" element={<Admin_after_auth><Add_product /></Admin_after_auth>} />
+          <Route path="/admin/manage-products" element={<Admin_after_auth><Manage_product /></Admin_after_auth>} />
+          <Route path="/admin/view-cart" element={<Admin_after_auth><View_cart /></Admin_after_auth>} />
+          <Route path="/admin/manage-customers" element={<Admin_after_auth><Manage_customer /></Admin_after_auth>} />
+          <Route path="/admin/manage-contacts" element={<Admin_after_auth><Manage_contact /></Admin_after_auth>} />
+
+          {/* Legacy admin routes for backward compatibility */}
+          <Route path="/dashboard" element={<Navigate to="/admin/dashboard" />} />
+          <Route path="/add_categories" element={<Navigate to="/admin/add-categories" />} />
+          <Route path="/manage_categories" element={<Navigate to="/admin/manage-categories" />} />
+          <Route path="/add_product" element={<Navigate to="/admin/add-product" />} />
+          <Route path="/manage_product" element={<Navigate to="/admin/manage-products" />} />
+          <Route path="/view_cart" element={<Navigate to="/admin/view-cart" />} />
+          <Route path="/manage_customer" element={<Navigate to="/admin/manage-customers" />} />
+          <Route path="/manage_contact" element={<Navigate to="/admin/manage-contacts" />} />
+
+          {/* Catch all route */}
+          <Route path="*" element={<Navigate to="/notfound" />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </CartProvider>
   );
 }
 

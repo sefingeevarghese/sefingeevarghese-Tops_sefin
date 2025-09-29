@@ -1,55 +1,85 @@
-import React from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
-import '@fortawesome/fontawesome-free/css/all.min.css'
+import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import swal from 'sweetalert';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function AdminHeader() {
     const navigate = useNavigate();
+    
     const handleLogout = () => {
-        localStorage.removeItem('isAdmin');
-        localStorage.removeItem('isLoggedIn');
-        navigate('/admin-login');
+        // Show confirmation dialog
+        swal({
+            title: "Are you sure?",
+            text: "Do you want to logout from admin panel?",
+            icon: "warning",
+            buttons: ["Cancel", "Yes, Logout"],
+            dangerMode: true,
+        }).then((willLogout) => {
+            if (willLogout) {
+                localStorage.removeItem('isAdmin');
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('adminEmail');
+                localStorage.removeItem('loginTime');
+                
+                swal("Success!", "Logged out successfully!", "success").then(() => {
+                    navigate('/admin-login');
+                });
+            }
+        });
     };
+    
     return (
-        <div>
-            {/* Navbar Start */}
-            <nav className="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-                <div className="container-fluid">
-                    <a href="index.html" className="navbar-brand d-flex align-items-center px-4 px-lg-5">
-                        <h2 className="m-0 text-primary"><i className="fas fa-book me-3"></i>eLEARNING</h2>
-                    </a>
-                    <button type="button" className="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                        <span className="navbar-toggler-icon" />
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarCollapse">
-                        <ul className="navbar-nav ms-auto p-4 p-lg-0">
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/dashboard">Dashboard</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/manage_categories">Manage Categories</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/manage_product">Manage Products</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/view_cart">View Cart</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/manage_customer">Manage Customers</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/manage_contact">Manage Contacts</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <button className="btn btn-outline-danger ms-3" onClick={handleLogout}>Logout</button>
-                            </li>
-                        </ul>
-                    </div>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow sticky-top">
+            <div className="container-fluid">
+                <NavLink className="navbar-brand d-flex align-items-center px-3" to="/admin/dashboard">
+                    <i className="bi bi-cake2 me-2 text-warning" style={{ fontSize: '1.5rem' }}></i>
+                    <h4 className="m-0 text-white">Plum Cake Bliss Admin</h4>
+                </NavLink>
+                
+                <button 
+                    className="navbar-toggler" 
+                    type="button" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#navbarNav"
+                >
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav ms-auto">
+                        <li className="nav-item dropdown">
+                            <button 
+                                className="nav-link dropdown-toggle text-white bg-transparent border-0" 
+                                id="navbarDropdown" 
+                                role="button" 
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                <i className="bi bi-person-circle me-1"></i>
+                                Admin
+                            </button>
+                            <ul className="dropdown-menu">
+                                <li>
+                                    <NavLink className="dropdown-item" to="/admin/dashboard">
+                                        <i className="bi bi-speedometer2 me-2"></i>
+                                        Dashboard
+                                    </NavLink>
+                                </li>
+                                <li><hr className="dropdown-divider" /></li>
+                                <li>
+                                    <button className="dropdown-item" onClick={handleLogout}>
+                                        <i className="bi bi-box-arrow-right me-2"></i>
+                                        Logout
+                                    </button>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
-            {/* Navbar End */}
-        </div>
-    )
+            </div>
+        </nav>
+    );
 }
 
 export default AdminHeader

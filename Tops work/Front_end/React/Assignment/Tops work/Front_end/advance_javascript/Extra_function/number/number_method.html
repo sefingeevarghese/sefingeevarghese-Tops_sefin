@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- Special Function introduced in JavaScript -->
+
+
+<!--isFinite()	It determines whether the given value is a finite number.-->
+
+<script>  
+  // Checking isFinite()
+  document.writeln("<strong>Checking isFinite()</strong><br>");  
+
+  var x = "as";  
+  var y = 1;  
+  var z = -1;  
+
+  document.writeln(Number.isFinite(x) + "<br>");  
+  document.writeln(Number.isFinite(y) + "<br>");  
+  document.writeln(Number.isFinite(z) + "<br>");  
+  document.writeln("<br>");  
+
+  function check(x, y) {  
+    return x / y;  
+  }  
+
+  document.writeln(Number.isFinite(check(0, 10)) + "<br>");  
+  document.writeln(Number.isFinite(check(10, 0)) + "<br>");  
+  document.writeln("<hr>");  // Horizontal line for separation
+  
+  // Checking isInteger()
+  document.writeln("<strong>Checking isInteger()</strong><br>");  
+
+  document.writeln(Number.isInteger(check(12, 10)) + "<br>");  
+  document.writeln(Number.isInteger(check(12, 5)) + "<br>");  
+  document.writeln("<hr>");  
+  
+  // parseFloat()
+  document.writeln("<strong>Using parseFloat()</strong><br>");  
+
+  var a = "50.00";  
+  var b = "50.25";  
+  var c = "String";  
+  var d = "50String";  
+  var e = "50.25String";  
+
+  document.writeln(Number.parseFloat(a) + "<br>");  
+  document.writeln(Number.parseFloat(b) + "<br>");  
+  document.writeln(Number.parseFloat(c) + "<br>");  
+  document.writeln(Number.parseFloat(d) + "<br>");  
+  document.writeln(Number.parseFloat(e) + "<br>");  
+  document.writeln("<hr>");  
+
+  // parseInt()
+  document.writeln("<strong>Using parseInt()</strong><br>");  
+
+  var a = "50Rs";  
+  var b = "50.25rs";  
+  var c = "String";  
+  var d = "50String";  
+  var e = "50.25String";  
+
+  document.writeln(Number.parseInt(a) + "<br>");  
+  document.writeln(Number.parseInt(b) + "<br>");  
+  document.writeln(Number.parseInt(c) + "<br>");  
+  document.writeln(Number.parseInt(d) + "<br>");  
+  document.writeln(Number.parseInt(e) + "<br>");  
+  document.writeln("<hr>");  
+
+  // toExponential()
+  document.writeln("<strong>Using toExponential()</strong><br>");  
+
+  var a = 989721;  
+  document.writeln(a.toExponential() + "<br>");  
+  document.writeln("<hr>");  
+
+  // toFixed()
+  document.writeln("<strong>Using toFixed()</strong><br>");  
+
+  var a = 98.972102;  
+  document.writeln(a.toFixed() + "<br>");  
+  document.writeln(a.toFixed(2) + "<br>");  
+  document.writeln("<hr>");  
+
+  // toPrecision()
+  document.writeln("<strong>Using toPrecision()</strong><br>");  
+
+  var a = 98.9721;  
+  document.writeln(a.toPrecision() + "<br>");  
+  document.writeln("<hr>");  
+
+  // toString()
+  document.writeln("<strong>Using toString()</strong><br>");  
+
+  var a = 50;  
+  var b = -50;  
+  var c = 50.25;  
+
+  document.writeln(a.toString() + "<br>");  
+  document.writeln(b.toString() + "<br>");  
+  document.writeln(c.toString() + "<br>");  
+</script>
+
+</body>
+</html>

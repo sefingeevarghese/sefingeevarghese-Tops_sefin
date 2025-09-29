@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 // Admin credentials configuration
 const ADMIN_CREDENTIALS = {
-  email: 'admin@tops.com',
-  password: 'tops123'
+  email: 'admin@plumcakebliss.com',
+  password: 'admin123'
 };
 
 function Admin_login() {
@@ -33,9 +34,15 @@ function Admin_login() {
     ) {
       localStorage.setItem('isAdmin', 'true');
       localStorage.setItem('isLoggedIn', 'true');
-      navigate('/dashboard');
+      localStorage.setItem('adminEmail', formData.email);
+      localStorage.setItem('loginTime', Date.now().toString());
+      
+      swal("Welcome Admin!", "Login successful! Redirecting to dashboard...", "success").then(() => {
+        navigate('/admin/dashboard');
+      });
     } else {
-      setError('Invalid email or password');
+      setError('Invalid admin credentials');
+      swal("Login Failed!", "Invalid admin credentials. Please try again.", "error");
     }
   };
 

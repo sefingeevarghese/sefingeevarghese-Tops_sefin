@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Tasks</title>
+</head>
+<body>
+    <h1>JavaScript Tasks</h1>
+
+    <script>
+        // Task 1: Check if a number is positive, negative, or zero
+        let number = parseFloat(prompt("Enter a number to check if it's positive, negative, or zero:"));
+        document.write("<h2>Task 1: Positive, Negative, or Zero</h2>");
+        if (number > 0) {
+            document.write("The number " + number + " is positive.<br>");
+        } else if (number < 0) {
+            document.write("The number " + number + " is negative.<br>");
+        } else {
+            document.write("The number is zero.<br>");
+        }
+
+        // Task 2: Display the day of the week based on user input
+        let dayNumber = parseInt(prompt("Enter a number (1-7) to get the corresponding day of the week:"));
+        document.write("<h2>Task 2: Day of the Week</h2>");
+        switch (dayNumber) {
+            case 1:
+                document.write("Monday");
+                break;
+            case 2:
+                document.write("Tuesday");
+                break;
+            case 3:
+                document.write("Wednesday");
+                break;
+            case 4:
+                document.write("Thursday");
+                break;
+            case 5:
+                document.write("Friday");
+                break;
+            case 6:
+                document.write("Saturday");
+                break;
+            case 7:
+                document.write("Sunday");
+                break;
+            default:
+                document.write("Invalid input! Please enter a number between 1 and 7.");
+        }
+    </script>
+</body>
+</html>

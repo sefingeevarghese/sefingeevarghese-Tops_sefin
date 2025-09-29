@@ -1,0 +1,71 @@
+/* Apply full-page background and center the card */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #40cae9; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* Profile card container */
+  .profile-card {
+    background-color: white;
+    width: 300px;
+    text-align: center;
+    padding: 20px; /* Padding inside the card */
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(54, 77, 250, 0.944);
+    box-sizing: border-box; /* Ensure the padding is included in total size */
+  }
+  
+  /* Profile picture */
+  .profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #007bff;
+    margin-bottom: 15px;
+    box-sizing: content-box; /* Border is added outside the picture size */
+  }
+  
+  /* User name */
+  .user-name {
+    font-size: 20px;
+    color: #333;
+    margin: 10px 0;
+  }
+  
+  /* User bio */
+  .user-bio {
+    font-size: 14px;
+    color: #666;
+    margin: 10px 0;
+    padding: 0 10px; /* Add padding for better readability */
+    box-sizing: border-box;
+  }
+  
+  /* Follow button */
+  .follow-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box; /* Ensure padding is part of the button size */
+  }
+  
+  /* Follow button hover effect */
+  .follow-btn:hover {
+    background-color: #0056b3;
+  }
+  
+
+
+
+  

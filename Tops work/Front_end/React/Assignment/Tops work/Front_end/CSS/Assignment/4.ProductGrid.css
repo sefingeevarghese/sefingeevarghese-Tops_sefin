@@ -1,0 +1,59 @@
+body {
+    background-color:#f0f0f0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns of equal width */
+    gap: 20px; /* Add spacing between grid items */
+    width: 80%; /* Make grid responsive */
+  }
+  
+  .product-card {
+    background-color: white;
+    border: 1px solid lightsalmon;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(246, 184, 61, 0.93);
+    transition: transform 0.3s, box-shadow 0.5s;
+  }
+  
+  .product-card img {
+    width: 150px;  /* Set the desired width */
+    height: 150px;  /* Set the desired height */
+    object-fit: cover; /* Ensures the image is cropped proportionally to fit */
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .product-card h3 {
+    margin: 10px 0;
+    font-size: 1.2em;
+    color:  white;
+  }
+  
+  .product-card p {
+    font-size: 1em;
+    color: white;
+  }
+  
+  .product-card:hover {
+    transform: scale(1.05); /* Enlarges card slightly on hover */
+  }
+  
+  /* Different background colors for each card */
+.card1 { background-color: #ff6b6b; } /* Red */
+.card2 { background-color: #4dabf7; } /* Blue */
+.card3 { background-color: #ffd43b; } /* Yellow */
+.card4 { background-color: #51cf66; } /* Green */
+.card5 { background-color: #5f3dc4; } /* Purple */
+.card6 { background-color: #f06595; } /* Pink */
+.card7 { background-color: #ffa94d; } /* Orange */
+.card8 { background-color: #74c0fc; } /* Light Blue */
+.card9 { background-color: #82c91e; } /* Lime */

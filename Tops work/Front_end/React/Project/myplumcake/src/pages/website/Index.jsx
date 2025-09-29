@@ -1,30 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import { useCart } from '../../Components/CartContext';
+import { toast } from 'react-toastify';
+import '../../Components/CategoryProductHover.css';
 
 function Index() {
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
+    const [selectedProduct, setSelectedProduct] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const { addToCart, isInCart } = useCart();
 
     useEffect(() => {
-        // Fetch categories and products from Firebase
-        axios.get('https://plumcake-bc095-default-rtdb.firebaseio.com/categories.json').then(res => {
+        // Fetch categories and products from local JSON server
+        axios.get('http://localhost:3001/categories').then(res => {
             const data = res.data;
             if (data) {
-                const categoriesArray = Object.entries(data).map(([id, value]) => ({ id, ...value }));
-                setCategories(categoriesArray);
+                setCategories(data);
             } else {
                 setCategories([]);
             }
+        }).catch(error => {
+            console.error('Error fetching categories:', error);
+            setCategories([]);
         });
-        axios.get('https://plumcake-bc095-default-rtdb.firebaseio.com/products.json').then(res => {
+        
+        axios.get('http://localhost:3001/products').then(res => {
             const data = res.data;
             if (data) {
-                const productsArray = Object.entries(data).map(([id, value]) => ({ id, ...value }));
-                setProducts(productsArray);
+                setProducts(data);
             } else {
                 setProducts([]);
             }
+        }).catch(error => {
+            console.error('Error fetching products:', error);
+            setProducts([]);
         });
 
         // Initialize carousels after component mount
@@ -58,65 +70,55 @@ function Index() {
         }
     }, []);
 
+    // Handle category click to filter products
+    const handleCategoryClick = (categoryName) => {
+        setSelectedCategory(categoryName);
+        const filtered = products.filter(product => product.category === categoryName);
+        setFilteredProducts(filtered);
+    };
+
+    // Reset category filter
+    const resetCategoryFilter = () => {
+        setSelectedCategory(null);
+        setFilteredProducts([]);
+    };
+
     return (
         <div>
-            {/* Navbar Start */}
-            <nav className="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-                <a href="index.html" className="navbar-brand d-flex align-items-center px-4 px-lg-5">
-                    <h2 className="m-0 text-primary"><i className="fa fa-birthday-cake me-3" />My Plum Cake</h2>
-                </a>
-                <button type="button" className="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span className="navbar-toggler-icon" />
-                </button>
-                <div className="collapse navbar-collapse" id="navbarCollapse">
-                    <div className="navbar-nav ms-auto p-4 p-lg-0">
-                        <NavLink to="/" className="nav-item nav-link">Home</NavLink>
-                        <NavLink to="/about" className="nav-item nav-link">About</NavLink>
-                        <NavLink to="/Services" className="nav-item nav-link">Services</NavLink>
-                        <div className="nav-item dropdown">
-                            <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div className="dropdown-menu fade-down m-0">
-                                <NavLink to="/ourteam" className="dropdown-item">Our Team</NavLink>
-                                <NavLink to="/testimonial" className="dropdown-item">Testimonial</NavLink>
-                                <NavLink to="/notfound" className="dropdown-item">Notfound</NavLink>
-                            </div>
-                        </div>
-                        <NavLink to="/contact" className="nav-item nav-link">Contact</NavLink>
-                    </div>
-                    <NavLink to="/loginsignup" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i className="fa fa-arrow-right ms-3" /></NavLink>
-                </div>
-            </nav>
-            {/* Navbar End */}
                 {/* Carousel Start */}
                 <div className="container-fluid p-0 mb-5">
                     <div className="owl-carousel header-carousel position-relative">
                         <div className="owl-carousel-item position-relative">
-                            <img className="img-fluid" src="img/carousel-1.jpg" alt />
+                            <img className="img-fluid w-100" src="img/carousel-1.jpg" alt="" style={{height: '500px', objectFit: 'cover'}} />
                             <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style={{ background: 'rgba(24, 29, 56, .7)' }}>
                                 <div className="container">
-                                    <div className="row justify-content-start">
-                                        <div className="col-sm-10 col-lg-8">
+                                    <div className="row justify-content-center">
+                                        <div className="col-sm-12 col-lg-10 text-center">
                                             <h5 className="text-primary text-uppercase mb-3 animated slideInDown">Delicious Plum Cakes</h5>
-                                            <h1 className="display-3 text-white animated slideInDown">The Best Plum Cake Shop Online</h1>
-                                            <p className="fs-5 text-white mb-4 pb-2">Discover our range of rich, moist, and flavorful plum cakes, baked fresh with the finest ingredients. Perfect for every celebration and sweet craving!</p>
-                                            <a href className="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Explore Cakes</a>
-                                            <a href className="btn btn-light py-md-3 px-md-5 animated slideInRight">Order Now</a>
+                                            <h1 className="display-3 text-white animated slideInDown mb-4">The Best Plum Cake Shop Online</h1>
+                                            <p className="fs-5 text-white mb-4 pb-3">Discover our range of rich, moist, and flavorful plum cakes, baked fresh with the finest ingredients. Perfect for every celebration and sweet craving!</p>
+                                            <div className="d-flex justify-content-center gap-3">
+                                                <NavLink to="/services" className="btn btn-primary py-3 px-5 animated slideInLeft">Explore Cakes</NavLink>
+                                                <NavLink to="/services" className="btn btn-light py-3 px-5 animated slideInRight">Order Now</NavLink>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="owl-carousel-item position-relative">
-                            <img className="img-fluid" src="img/carousel-2.jpg" alt />
+                            <img className="img-fluid w-100" src="img/carousel-2.jpg" alt="" style={{height: '500px', objectFit: 'cover'}} />
                             <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style={{ background: 'rgba(24, 29, 56, .7)' }}>
                                 <div className="container">
-                                    <div className="row justify-content-start">
-                                        <div className="col-sm-10 col-lg-8">
+                                    <div className="row justify-content-center">
+                                        <div className="col-sm-12 col-lg-10 text-center">
                                             <h5 className="text-primary text-uppercase mb-3 animated slideInDown">Premium Plum Cakes</h5>
-                                            <h1 className="display-3 text-white animated slideInDown">Order Plum Cakes Online, Freshly Baked</h1>
-                                            <p className="fs-5 text-white mb-4 pb-2">Enjoy the taste of tradition with our signature plum cakes, made with love and delivered to your doorstep.</p>
-                                            <a href className="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">See Varieties</a>
-                                            <a href className="btn btn-light py-md-3 px-md-5 animated slideInRight">Shop Now</a>
+                                            <h1 className="display-3 text-white animated slideInDown mb-4">Order Plum Cakes Online, Freshly Baked</h1>
+                                            <p className="fs-5 text-white mb-4 pb-3">Enjoy the taste of tradition with our signature plum cakes, made with love and delivered to your doorstep.</p>
+                                            <div className="d-flex justify-content-center gap-3">
+                                                <NavLink to="/services" className="btn btn-primary py-3 px-5 animated slideInLeft">See Varieties</NavLink>
+                                                <NavLink to="/services" className="btn btn-light py-3 px-5 animated slideInRight">Shop Now</NavLink>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -180,8 +182,8 @@ function Index() {
                             </div>
                             <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
                                 <h6 className="section-title bg-white text-start text-primary pe-3">About Us</h6>
-                                <h1 className="mb-4">Welcome to My Plum Cake</h1>
-                                <p className="mb-4">Founded with a passion for baking, My Plum Cake is dedicated to bringing you the most delicious, handcrafted plum cakes. Our journey began in a small kitchen, where family recipes were perfected and shared with friends and neighbors. Today, we continue that tradition, baking each cake with love and care.</p>
+                                <h1 className="mb-4">Welcome to Plum Cake Bliss</h1>
+                                <p className="mb-4">Founded with a passion for baking, Plum Cake Bliss is dedicated to bringing you the most delicious, handcrafted plum cakes. Our journey began in a small kitchen, where family recipes were perfected and shared with friends and neighbors. Today, we continue that tradition, baking each cake with love and care.</p>
                                 <p className="mb-4">Our mission is to make every celebration sweeter with our signature plum cakes. Whether you're looking for a classic, chocolate, fruit & nut, or eggless variety, we have something for everyone. We believe in quality, freshness, and customer delight above all else.</p>
                                 <ul className="mb-4">
                                     <li>Freshly baked daily with premium ingredients</li>
@@ -189,7 +191,7 @@ function Index() {
                                     <li>Fast, reliable delivery to your doorstep</li>
                                     <li>Perfect for birthdays, holidays, and special occasions</li>
                                 </ul>
-                                <a className="btn btn-primary py-3 px-5 mt-2" href="#">Order Your Cake</a>
+                                <NavLink to="/services" className="btn btn-primary py-3 px-5 mt-2">Order Your Cake</NavLink>
                             </div>
                         </div>
                     </div>
@@ -206,8 +208,22 @@ function Index() {
                             <div className="text-center">No categories found.</div>
                         ) : categories.map((cat, idx) => (
                             <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={cat.id || idx}>
-                                <div className="card h-100">
-                                    <img src={cat.image || 'img/cat-1.jpg'} className="card-img-top" alt={cat.name} style={{height: '200px', objectFit: 'cover'}} />
+                                <div 
+                                    className="card h-100 category-card" 
+                                    onClick={() => handleCategoryClick(cat.name)}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    <div className="category-image-container">
+                                        <img 
+                                            src={cat.image || 'img/cat-1.jpg'} 
+                                            className="card-img-top category-image" 
+                                            alt={cat.name} 
+                                            style={{height: '200px', objectFit: 'cover'}} 
+                                        />
+                                        <div className="category-overlay">
+                                            <span className="view-cakes-text">View Cakes</span>
+                                        </div>
+                                    </div>
                                     <div className="card-body text-center">
                                         <h5 className="card-title">{cat.name}</h5>
                                         <p className="card-text">{cat.description}</p>
@@ -219,7 +235,90 @@ function Index() {
                 </div>
                 {/* Categories End */}
 
+                {/* Category-filtered Products Section */}
+                {selectedCategory && (
+                    <div className="container-xxl py-5 category-filter-section">
+                        <div className="container">
+                            <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
+                                <h6 className="section-title bg-white text-center text-primary px-3">{selectedCategory}</h6>
+                                <h1 className="mb-4">Cakes in {selectedCategory}</h1>
+                                <button 
+                                    className="btn btn-outline-primary mb-4"
+                                    onClick={resetCategoryFilter}
+                                >
+                                    <i className="fa fa-arrow-left me-2"></i>View All Categories
+                                </button>
+                            </div>
+                            <div className="row g-3">
+                                {filteredProducts.length === 0 ? (
+                                    <div className="text-center">
+                                        <p>No cakes found in this category.</p>
+                                    </div>
+                                ) : filteredProducts.map((prod, idx) => (
+                                    <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={prod.id || idx}>
+                                        <div className="card h-100 d-flex flex-column product-card">
+                                            <div className="product-image-container">
+                                                <img 
+                                                    src={prod.image || 'img/cat-1.jpg'} 
+                                                    className="card-img-top product-image" 
+                                                    alt={prod.name} 
+                                                    style={{height: '200px', objectFit: 'cover'}} 
+                                                />
+                                                <div className="product-overlay">
+                                                    <div className="product-actions">
+                                                        <button 
+                                                            className="btn btn-primary btn-sm me-2"
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setSelectedProduct(prod);
+                                                            }}
+                                                        >
+                                                            <i className="fa fa-eye"></i>
+                                                        </button>
+                                                        <button 
+                                                            className="btn btn-outline-light btn-sm"
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                addToCart(prod);
+                                                            }}
+                                                            disabled={isInCart(prod.id)}
+                                                        >
+                                                            <i className="fa fa-shopping-cart"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="card-body text-center d-flex flex-column">
+                                                <h5 className="card-title">{prod.name}</h5>
+                                                <p className="card-text flex-grow-1">{prod.description}</p>
+                                                <p className="card-text fw-bold text-primary mb-3">₹{prod.price}</p>
+                                                <div className="d-grid gap-2">
+                                                    <button 
+                                                        className="btn btn-primary btn-sm"
+                                                        onClick={() => setSelectedProduct(prod)}
+                                                    >
+                                                        <i className="fa fa-eye me-2"></i>View Details
+                                                    </button>
+                                                    <button 
+                                                        className="btn btn-outline-primary btn-sm"
+                                                        onClick={() => addToCart(prod)}
+                                                        disabled={isInCart(prod.id)}
+                                                    >
+                                                        <i className="fa fa-shopping-cart me-2"></i>
+                                                        {isInCart(prod.id) ? 'In Cart' : 'Add to Cart'}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {/* Products Start */}
+                {!selectedCategory && (
                 <div className="container-xxl py-5">
                     <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
                         <h6 className="section-title bg-white text-center text-primary px-3">Products</h6>
@@ -230,63 +329,66 @@ function Index() {
                             <div className="text-center">No products found.</div>
                         ) : products.map((prod, idx) => (
                             <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={prod.id || idx}>
-                                <div className="card h-100">
-                                    <img src={prod.image || 'img/cat-1.jpg'} className="card-img-top" alt={prod.name} style={{height: '200px', objectFit: 'cover'}} />
-                                    <div className="card-body text-center">
+                                <div className="card h-100 d-flex flex-column product-card">
+                                    <div className="product-image-container">
+                                        <img 
+                                            src={prod.image || 'img/cat-1.jpg'} 
+                                            className="card-img-top product-image" 
+                                            alt={prod.name} 
+                                            style={{height: '200px', objectFit: 'cover'}} 
+                                        />
+                                        <div className="product-overlay">
+                                            <div className="product-actions">
+                                                <button 
+                                                    className="btn btn-primary btn-sm me-2"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setSelectedProduct(prod);
+                                                    }}
+                                                >
+                                                    <i className="fa fa-eye"></i>
+                                                </button>
+                                                <button 
+                                                    className="btn btn-outline-light btn-sm"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        addToCart(prod);
+                                                    }}
+                                                    disabled={isInCart(prod.id)}
+                                                >
+                                                    <i className="fa fa-shopping-cart"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="card-body text-center d-flex flex-column">
                                         <h5 className="card-title">{prod.name}</h5>
-                                        <p className="card-text">{prod.description}</p>
-                                        <p className="card-text fw-bold text-primary">${prod.price}</p>
+                                        <p className="card-text flex-grow-1">{prod.description}</p>
+                                        <p className="card-text fw-bold text-primary mb-3">₹{prod.price}</p>
+                                        <div className="d-grid gap-2">
+                                            <button 
+                                                className="btn btn-primary btn-sm"
+                                                onClick={() => setSelectedProduct(prod)}
+                                            >
+                                                <i className="fa fa-eye me-2"></i>View Details
+                                            </button>
+                                            <button 
+                                                className="btn btn-outline-primary btn-sm"
+                                                onClick={() => addToCart(prod)}
+                                                disabled={isInCart(prod.id)}
+                                            >
+                                                <i className="fa fa-shopping-cart me-2"></i>
+                                                {isInCart(prod.id) ? 'In Cart' : 'Add to Cart'}
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
+                )}
                 {/* Products End */}
-                {/* Services Start */}
-                <div className="container-xxl py-5">
-                    <div className="container">
-                        <div className="row g-4">
-                            <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                                <div className="service-item text-center pt-3">
-                                    <div className="p-4">
-                                        <i className="fa fa-3x fa-birthday-cake text-primary mb-4" />
-                                        <h5 className="mb-3">Handcrafted Plum Cakes</h5>
-                                        <p>Every cake is baked fresh daily using traditional recipes and the finest ingredients for a rich, moist flavor.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                                <div className="service-item text-center pt-3">
-                                    <div className="p-4">
-                                        <i className="fa fa-3x fa-truck text-primary mb-4" />
-                                        <h5 className="mb-3">Fast Delivery</h5>
-                                        <p>Enjoy doorstep delivery of your favorite plum cakes, ensuring freshness and convenience for every celebration.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                                <div className="service-item text-center pt-3">
-                                    <div className="p-4">
-                                        <i className="fa fa-3x fa-star text-primary mb-4" />
-                                        <h5 className="mb-3">Premium Quality</h5>
-                                        <p>We use only the best ingredients, ensuring every bite is packed with flavor and quality you can trust.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                                <div className="service-item text-center pt-3">
-                                    <div className="p-4">
-                                        <i className="fa fa-3x fa-heart text-primary mb-4" />
-                                        <h5 className="mb-3">Customer Satisfaction</h5>
-                                        <p>Your happiness is our priority. We strive to make every cake perfect for your special moments.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* Services End */}
                 {/* Team Start */}
                 <div className="container-xxl py-5">
                     <div className="container">
@@ -417,6 +519,71 @@ function Index() {
                 {/* Testimonial End */}
             {/* Back to Top */}
             <a href="#" className="btn btn-lg btn-primary btn-lg-square back-to-top"><i className="bi bi-arrow-up" /></a>
+            
+            {/* Product Details Modal */}
+            {selectedProduct && (
+                <div className="modal show" style={{ display: 'block', background: 'rgba(0,0,0,0.5)' }}>
+                    <div className="modal-dialog modal-lg">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">{selectedProduct.name}</h5>
+                                <button 
+                                    type="button" 
+                                    className="btn-close" 
+                                    onClick={() => setSelectedProduct(null)}
+                                ></button>
+                            </div>
+                            <div className="modal-body">
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <img 
+                                            src={selectedProduct.image || 'img/cat-1.jpg'} 
+                                            alt={selectedProduct.name}
+                                            className="img-fluid rounded"
+                                            style={{ width: '100%', height: '300px', objectFit: 'cover' }}
+                                        />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <h4>{selectedProduct.name}</h4>
+                                        <p className="text-muted mb-3">{selectedProduct.category}</p>
+                                        <p className="h3 text-primary mb-3">₹{selectedProduct.price}</p>
+                                        <p className="mb-4">{selectedProduct.description || 'Delicious handcrafted plum cake made with premium ingredients.'}</p>
+                                        <div className="mb-3">
+                                            <small className="fa fa-star text-warning" />
+                                            <small className="fa fa-star text-warning" />
+                                            <small className="fa fa-star text-warning" />
+                                            <small className="fa fa-star text-warning" />
+                                            <small className="fa fa-star text-warning" />
+                                            <span className="ms-2 text-muted">(4.5/5)</span>
+                                        </div>
+                                        <div className="d-flex gap-2">
+                                            <button 
+                                                className="btn btn-primary flex-fill"
+                                                onClick={() => {
+                                                    addToCart(selectedProduct);
+                                                    setSelectedProduct(null);
+                                                }}
+                                                disabled={isInCart(selectedProduct.id)}
+                                            >
+                                                {isInCart(selectedProduct.id) ? 'Already in Cart' : 'Add to Cart'}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="modal-footer">
+                                <button 
+                                    type="button" 
+                                    className="btn btn-secondary" 
+                                    onClick={() => setSelectedProduct(null)}
+                                >
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
         </div>
     )

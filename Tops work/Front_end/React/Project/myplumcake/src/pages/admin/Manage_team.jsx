@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import AdminSidebar from './Component/AdminSidebar';
+import { toast } from 'react-toastify';
+import AdminLayout from './Component/AdminLayout';
 
 function Manage_team() {
   const [team, setTeam] = useState([]);
@@ -15,9 +16,16 @@ function Manage_team() {
 
   const fetchTeam = async () => {
     try {
-      const res = await axios.get('/team');
-      setTeam(res.data);
+      const res = await axios.get('http://localhost:3001/team');
+      const data = res.data;
+      if (data) {
+        setTeam(data);
+      } else {
+        setTeam([]);
+      }
     } catch (err) {
+      console.error('Error fetching team:', err);
+      toast.error('Error loading team members');
       setTeam([]);
     }
   };
@@ -33,9 +41,15 @@ function Manage_team() {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    await axios.patch(`/team/${editMember.id}`, editForm);
-    setEditMember(null);
-    fetchTeam();
+    try {
+      await axios.put(`http://localhost:3001/team/${editMember.id}`, { ...editForm, id: editMember.id });
+      toast.success('Team member updated successfully!');
+      setEditMember(null);
+      fetchTeam();
+    } catch (error) {
+      console.error('Error updating team member:', error);
+      toast.error('Error updating team member');
+    }
   };
 
   const handleEditCancel = () => {
@@ -43,8 +57,16 @@ function Manage_team() {
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`/team/${id}`);
-    fetchTeam();
+    if (window.confirm('Are you sure you want to delete this team member?')) {
+      try {
+        await axios.delete(`http://localhost:3001/team/${id}`);
+        toast.success('Team member deleted successfully!');
+        fetchTeam();
+      } catch (error) {
+        console.error('Error deleting team member:', error);
+        toast.error('Error deleting team member');
+      }
+    }
   };
 
   const handleAddChange = (e) => {
@@ -53,52 +75,109 @@ function Manage_team() {
 
   const handleAddSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('/team', addForm);
-    setAddForm({ name: '', role: '', image: '' });
-    setShowAdd(false);
-    fetchTeam();
+    try {
+      await axios.post('http://localhost:3001/team', {
+        ...addForm,
+        id: Date.now().toString()
+      });
+      toast.success('Team member added successfully!');
+      setAddForm({ name: '', role: '', image: '' });
+      setShowAdd(false);
+      fetchTeam();
+    } catch (error) {
+      console.error('Error adding team member:', error);
+      toast.error('Error adding team member');
+    }
   };
 
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <AdminSidebar />
-        <div className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-          <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 className="h2">Manage Team</h1>
-            <button className="btn btn-primary" onClick={() => setShowAdd(true)}>Add Team Member</button>
-          </div>
-          <div className="table-responsive">
-            <table className="table table-striped table-hover">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Role</th>
-                  <th>Image</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {team.length === 0 ? (
-                  <tr><td colSpan="4" className="text-center">No team members found.</td></tr>
-                ) : team.map((m) => (
-                  <tr key={m.id}>
-                    <td>{m.name}</td>
-                    <td>{m.role}</td>
-                    <td>{m.image ? <img src={m.image} alt={m.name} style={{width: '50px', height: '50px', objectFit: 'cover'}} /> : '-'}</td>
-                    <td>
-                      <button className="btn btn-sm btn-primary me-2" onClick={() => handleEditClick(m)}>
-                        Edit
-                      </button>
-                      <button className="btn btn-sm btn-danger" onClick={() => handleDelete(m.id)}>
-                        Delete
-                      </button>
-                    </td>
+    <AdminLayout>
+      <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 className="h2">
+          <i className="bi bi-people me-2 text-primary"></i>
+          Manage Team
+        </h1>
+        <button className="btn btn-primary" onClick={() => setShowAdd(true)}>
+          <i className="bi bi-plus-circle me-2"></i>
+          Add Team Member
+        </button>
+      </div>
+      
+      <div className="card">
+        <div className="card-header">
+          <h5 className="card-title mb-0">
+            <i className="bi bi-table me-2"></i>
+            Team Members
+            <span className="badge bg-primary ms-2">{team.length} total</span>
+          </h5>
+        </div>
+        <div className="card-body">
+          {team.length === 0 ? (
+            <div className="text-center py-5">
+              <i className="bi bi-people" style={{ fontSize: '4rem', color: '#6c757d' }}></i>
+              <h4 className="text-muted mt-3">No Team Members Found</h4>
+              <p className="text-muted">Add team members to display them here.</p>
+              <button className="btn btn-primary" onClick={() => setShowAdd(true)}>
+                <i className="bi bi-plus-circle me-2"></i>
+                Add First Team Member
+              </button>
+            </div>
+          ) : (
+            <div className="table-responsive">
+              <table className="table table-striped table-hover">
+                <thead className="table-dark">
+                  <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {team.map((m) => (
+                    <tr key={m.id}>
+                      <td>
+                        {m.image ? (
+                          <img 
+                            src={m.image} 
+                            alt={m.name} 
+                            className="rounded-circle"
+                            style={{width: '50px', height: '50px', objectFit: 'cover'}} 
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                              e.target.nextSibling.style.display = 'block';
+                            }}
+                          />
+                        ) : null}
+                        <div 
+                          className="bg-light d-flex align-items-center justify-content-center rounded-circle"
+                          style={{ 
+                            width: '50px', 
+                            height: '50px', 
+                            display: m.image ? 'none' : 'flex'
+                          }}
+                        >
+                          <i className="bi bi-person text-muted"></i>
+                        </div>
+                      </td>
+                      <td><strong>{m.name}</strong></td>
+                      <td><span className="badge bg-info">{m.role}</span></td>
+                      <td>
+                        <button className="btn btn-sm btn-warning me-2" onClick={() => handleEditClick(m)}>
+                          <i className="bi bi-pencil"></i> Edit
+                        </button>
+                        <button className="btn btn-sm btn-danger" onClick={() => handleDelete(m.id)}>
+                          <i className="bi bi-trash"></i> Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      </div>
           {/* Edit Modal */}
           {editMember && (
             <div className="modal show" style={{ display: 'block', background: 'rgba(0,0,0,0.5)' }}>
@@ -165,9 +244,7 @@ function Manage_team() {
               </div>
             </div>
           )}
-        </div>
-      </div>
-    </div>
+    </AdminLayout>
   );
 }
 

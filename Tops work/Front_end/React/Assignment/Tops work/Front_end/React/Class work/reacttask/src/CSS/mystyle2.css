@@ -1,0 +1,35 @@
+.test1{
+    background-color: yellow;
+    color: blue;
+    height: 100px;
+    width: 100px;
+}
+
+.animated-box-2 {
+    width: 150px;
+    height: 150px;
+    background-color: #2196F3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    margin: 20px;
+    border-radius: 15px;
+    animation: rotate 3s infinite linear;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animated-box-2:hover {
+    background-color: #1976D2;
+    transform: rotate(15deg);
+    box-shadow: 0 0 15px rgba(33, 150, 243, 0.5);
+}

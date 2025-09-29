@@ -1,0 +1,91 @@
+{
+  "user": [
+    {
+      "id": "1",
+      "name": "demo",
+      "email": "demo@gmail.com",
+      "password": "123456",
+      "mobile": 9722041171,
+      "status": "Unblock"
+    },
+    {
+      "id": "2",
+      "name": "demo",
+      "email": "demo@gmail.com",
+      "password": "123456",
+      "mobile": 9722041171,
+      "status": "Unblock"
+    }
+  ],
+  "contact": [
+    {
+      "id": "2",
+      "name": "rajesh",
+      "email": "jay@gmail.com",
+      "subect": "demo",
+      "msg": "hi"
+    }
+  ],
+  "admin": [
+    {
+      "id": "1",
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "password": "123456"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Men",
+      "image": "men.jpg"
+    },
+    {
+      "id": "2",
+      "name": "women",
+      "image": "women.jpg"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "cate_id": 1,
+      "name": "Men shirt",
+      "image": "men.jpg",
+      "price": 999,
+      "description": "Men shirt"
+    },
+    {
+      "id": "2",
+      "cate_id": 2,
+      "name": "Women shirt",
+      "image": "Women.jpg",
+      "price": 999,
+      "description": "Women shirt"
+    },
+    {
+      "id": "1749732127497",
+      "productName": "polo t shirts",
+      "category": "clothing",
+      "price": "999",
+      "description": "denim polo t shirt",
+      "image": "C:\\fakepath\\carousel-2.jpg"
+    },
+    {
+      "id": "1749896895258",
+      "productName": "shirt",
+      "category": "clothing",
+      "price": "890",
+      "description": "casual",
+      "image": ""
+    },
+    {
+      "id": "1749896934175",
+      "productName": "shirt",
+      "category": "clothing",
+      "price": "890",
+      "description": "super cool",
+      "image": "C:\\fakepath\\testimonial-2.jpg"
+    }
+  ]
+}

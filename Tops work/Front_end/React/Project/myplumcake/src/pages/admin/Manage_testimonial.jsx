@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import AdminSidebar from './Component/AdminSidebar';
+import { toast } from 'react-toastify';
+import AdminLayout from './Component/AdminLayout';
 
 function Manage_testimonial() {
   const [testimonials, setTestimonials] = useState([]);
@@ -15,9 +16,16 @@ function Manage_testimonial() {
 
   const fetchTestimonials = async () => {
     try {
-      const res = await axios.get('/testimonials');
-      setTestimonials(res.data);
+      const res = await axios.get('http://localhost:3001/testimonials');
+      const data = res.data;
+      if (data) {
+        setTestimonials(data);
+      } else {
+        setTestimonials([]);
+      }
     } catch (err) {
+      console.error('Error fetching testimonials:', err);
+      toast.error('Error loading testimonials');
       setTestimonials([]);
     }
   };
@@ -33,9 +41,15 @@ function Manage_testimonial() {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    await axios.patch(`/testimonials/${editTestimonial.id}`, editForm);
-    setEditTestimonial(null);
-    fetchTestimonials();
+    try {
+      await axios.put(`http://localhost:3001/testimonials/${editTestimonial.id}`, { ...editForm, id: editTestimonial.id });
+      toast.success('Testimonial updated successfully!');
+      setEditTestimonial(null);
+      fetchTestimonials();
+    } catch (error) {
+      console.error('Error updating testimonial:', error);
+      toast.error('Error updating testimonial');
+    }
   };
 
   const handleEditCancel = () => {
@@ -43,8 +57,16 @@ function Manage_testimonial() {
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`/testimonials/${id}`);
-    fetchTestimonials();
+    if (window.confirm('Are you sure you want to delete this testimonial?')) {
+      try {
+        await axios.delete(`http://localhost:3001/testimonials/${id}`);
+        toast.success('Testimonial deleted successfully!');
+        fetchTestimonials();
+      } catch (error) {
+        console.error('Error deleting testimonial:', error);
+        toast.error('Error deleting testimonial');
+      }
+    }
   };
 
   const handleAddChange = (e) => {
@@ -53,52 +75,90 @@ function Manage_testimonial() {
 
   const handleAddSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('/testimonials', addForm);
-    setAddForm({ name: '', role: '', message: '' });
-    setShowAdd(false);
-    fetchTestimonials();
+    try {
+      await axios.post('http://localhost:3001/testimonials', {
+        ...addForm,
+        id: Date.now().toString()
+      });
+      toast.success('Testimonial added successfully!');
+      setAddForm({ name: '', role: '', message: '' });
+      setShowAdd(false);
+      fetchTestimonials();
+    } catch (error) {
+      console.error('Error adding testimonial:', error);
+      toast.error('Error adding testimonial');
+    }
   };
 
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <AdminSidebar />
-        <div className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-          <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 className="h2">Manage Testimonials</h1>
-            <button className="btn btn-primary" onClick={() => setShowAdd(true)}>Add Testimonial</button>
-          </div>
-          <div className="table-responsive">
-            <table className="table table-striped table-hover">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Role</th>
-                  <th>Message</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {testimonials.length === 0 ? (
-                  <tr><td colSpan="4" className="text-center">No testimonials found.</td></tr>
-                ) : testimonials.map((t) => (
-                  <tr key={t.id}>
-                    <td>{t.name}</td>
-                    <td>{t.role}</td>
-                    <td>{t.message}</td>
-                    <td>
-                      <button className="btn btn-sm btn-primary me-2" onClick={() => handleEditClick(t)}>
-                        Edit
-                      </button>
-                      <button className="btn btn-sm btn-danger" onClick={() => handleDelete(t.id)}>
-                        Delete
-                      </button>
-                    </td>
+    <AdminLayout>
+      <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 className="h2">
+          <i className="bi bi-chat-quote me-2 text-primary"></i>
+          Manage Testimonials
+        </h1>
+        <button className="btn btn-primary" onClick={() => setShowAdd(true)}>
+          <i className="bi bi-plus-circle me-2"></i>
+          Add Testimonial
+        </button>
+      </div>
+      
+      <div className="card">
+        <div className="card-header">
+          <h5 className="card-title mb-0">
+            <i className="bi bi-table me-2"></i>
+            Customer Testimonials
+            <span className="badge bg-primary ms-2">{testimonials.length} total</span>
+          </h5>
+        </div>
+        <div className="card-body">
+          {testimonials.length === 0 ? (
+            <div className="text-center py-5">
+              <i className="bi bi-chat-quote" style={{ fontSize: '4rem', color: '#6c757d' }}></i>
+              <h4 className="text-muted mt-3">No Testimonials Found</h4>
+              <p className="text-muted">Add customer testimonials to display them here.</p>
+              <button className="btn btn-primary" onClick={() => setShowAdd(true)}>
+                <i className="bi bi-plus-circle me-2"></i>
+                Add First Testimonial
+              </button>
+            </div>
+          ) : (
+            <div className="table-responsive">
+              <table className="table table-striped table-hover">
+                <thead className="table-dark">
+                  <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Message</th>
+                    <th>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {testimonials.map((t) => (
+                    <tr key={t.id}>
+                      <td><strong>{t.name}</strong></td>
+                      <td><span className="badge bg-info">{t.role}</span></td>
+                      <td>
+                        <div style={{ maxWidth: '300px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                          {t.message}
+                        </div>
+                      </td>
+                      <td>
+                        <button className="btn btn-sm btn-warning me-2" onClick={() => handleEditClick(t)}>
+                          <i className="bi bi-pencil"></i> Edit
+                        </button>
+                        <button className="btn btn-sm btn-danger" onClick={() => handleDelete(t.id)}>
+                          <i className="bi bi-trash"></i> Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      </div>
           {/* Edit Modal */}
           {editTestimonial && (
             <div className="modal show" style={{ display: 'block', background: 'rgba(0,0,0,0.5)' }}>
@@ -165,9 +225,7 @@ function Manage_testimonial() {
               </div>
             </div>
           )}
-        </div>
-      </div>
-    </div>
+    </AdminLayout>
   );
 }
 

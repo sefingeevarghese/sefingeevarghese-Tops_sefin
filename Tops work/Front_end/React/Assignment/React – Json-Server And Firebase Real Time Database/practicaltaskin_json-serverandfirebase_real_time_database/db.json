@@ -27,6 +27,14 @@
       "email": "sefingeevarghese@gmail.com",
       "phone": "9824935774",
       "city": "Updated City"
+    },
+    {
+      "id": "8b50",
+      "name": "Sefin Geevarghese",
+      "email": "sefingeevarghese007@gmail.com",
+      "password": "Sebu#2001",
+      "createdAt": "2025-08-20T12:13:01.686Z",
+      "lastLogin": "2025-08-20T12:13:01.687Z"
     }
   ],
   "posts": [

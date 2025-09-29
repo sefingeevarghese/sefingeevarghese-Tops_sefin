@@ -1,0 +1,59 @@
+
+
+<!-- Task 1 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Background</title>
+</head>
+<body>
+
+    <script>
+        // Change background color after 5 seconds (5000ms)
+        setTimeout(function() {
+            document.body.style.backgroundColor = "yellow";
+        }, 5000);
+    </script>
+
+</body>
+</html>
+
+
+<!-- Task 2 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        #clock {
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="clock"></div>
+
+    <script>
+        function updateClock() {
+            let now = new Date();
+            let time = now.toLocaleTimeString();
+            document.getElementById("clock").innerHTML = time;
+        }
+
+        // Update clock every second
+        setInterval(updateClock, 1000);
+
+        // Call function immediately to display time without waiting
+        updateClock();
+    </script>
+
+</body>
+</html>

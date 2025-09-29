@@ -1,0 +1,77 @@
+body {
+  background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  max-width: 600px;
+  margin: 40px auto;
+  background: rgba(255,255,255,0.85);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(60,60,60,0.18);
+  padding: 32px;
+}
+
+h1 {
+  text-align: center;
+  color: #2d3a4b;
+  margin-bottom: 32px;
+  letter-spacing: 2px;
+}
+
+.task-section {
+  margin-bottom: 32px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.colorful-list-item {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 12px 0;
+  padding: 10px 18px;
+  border-radius: 8px;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+  cursor: pointer;
+  background: rgba(255,255,255,0.6);
+}
+
+.colorful-list-item:hover {
+  background: linear-gradient(90deg, #43c6ac 0%, #f8ffae 100%);
+  color: #222;
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(67,198,172,0.15);
+}
+
+/* ...existing code... */
+
+.two-column-layout {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.task-section {
+  flex: 1;
+  background: rgba(255,255,255,0.7);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(67,198,172,0.08);
+}
+
+.task-section h2 {
+  text-align: center;
+  color: #2d3a4b;
+  margin-bottom: 18px;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+/* ...existing code... */

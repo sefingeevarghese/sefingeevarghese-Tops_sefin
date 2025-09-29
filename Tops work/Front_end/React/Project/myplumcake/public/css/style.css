@@ -353,6 +353,8 @@
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     padding-bottom: 16px;
+    overflow: hidden;
+    position: relative;
 }
 
 .team-item .overflow-hidden {
@@ -360,6 +362,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .team-item img {
@@ -369,6 +372,51 @@
     border-radius: 12px 12px 0 0;
 }
 
+.team-item .social-buttons-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: auto;
+    max-width: calc(100% - 40px);
+}
+
+.team-item .social-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--light);
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    padding: 4px 6px;
+    gap: 1px;
+    border: 1px solid rgba(0,0,0,0.08);
+    width: fit-content;
+    max-width: 100%;
+}
+
+.team-item .btn-sm-square {
+    width: 24px !important;
+    height: 24px !important;
+    margin: 0;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+    border-radius: 4px !important;
+    font-size: 11px;
+    transition: all 0.3s ease;
+    padding: 0 !important;
+    min-width: 24px;
+    flex-shrink: 0;
+}
+
+.team-item .btn-sm-square:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
 .team-item .text-center.p-4 {
     flex: 1 1 auto;
     display: flex;
@@ -376,6 +424,7 @@
     justify-content: flex-end;
     align-items: center;
     width: 100%;
+    padding-top: 40px !important;
 }
 
 @media (max-width: 991.98px) {
@@ -461,22 +510,31 @@
 
 /*** Footer ***/
 .footer .btn.btn-social {
-    margin-right: 5px;
-    width: 35px;
-    height: 35px;
+    margin-right: 6px;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary);
+    text-align: center;
+    color: var(--light);
     font-weight: normal;
-    border: 1px solid var(--primary);
-    border-radius: 35px;
-    transition: .3s;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 13px;
+    line-height: 1;
+    padding: 0;
+    min-width: 32px;
+    flex-shrink: 0;
 }
 
 .footer .btn.btn-social:hover {
-    color: var(--light);
-    background: var(--primary);
+    color: var(--dark);
+    background: var(--light);
+    border-color: var(--light);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .footer .btn.btn-link {

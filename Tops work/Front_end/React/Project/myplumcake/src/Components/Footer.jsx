@@ -21,11 +21,59 @@ function Footer() {
                             <p className="mb-2"><i className="fa fa-map-marker-alt me-3" />123 Street, New York, USA</p>
                             <p className="mb-2"><i className="fa fa-phone-alt me-3" />+012 345 67890</p>
                             <p className="mb-2"><i className="fa fa-envelope me-3" />info@example.com</p>
-                            <div className="d-flex pt-2">
-                                <a className="btn btn-outline-light btn-social" href><i className="fab fa-twitter" /></a>
-                                <a className="btn btn-outline-light btn-social" href><i className="fab fa-facebook-f" /></a>
-                                <a className="btn btn-outline-light btn-social" href><i className="fab fa-youtube" /></a>
-                                <a className="btn btn-outline-light btn-social" href><i className="fab fa-linkedin-in" /></a>
+                            <div className="d-flex pt-2" style={{ gap: '4px' }}>
+                                <a 
+                                    className="btn btn-outline-light btn-social" 
+                                    href="#"
+                                    title="Follow us on Twitter"
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        textAlign: 'center'
+                                    }}
+                                >
+                                    <i className="fab fa-twitter" />
+                                </a>
+                                <a 
+                                    className="btn btn-outline-light btn-social" 
+                                    href="#"
+                                    title="Follow us on Facebook"
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        textAlign: 'center'
+                                    }}
+                                >
+                                    <i className="fab fa-facebook-f" />
+                                </a>
+                                <a 
+                                    className="btn btn-outline-light btn-social" 
+                                    href="#"
+                                    title="Subscribe to our YouTube"
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        textAlign: 'center'
+                                    }}
+                                >
+                                    <i className="fab fa-youtube" />
+                                </a>
+                                <a 
+                                    className="btn btn-outline-light btn-social" 
+                                    href="#"
+                                    title="Connect on LinkedIn"
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        textAlign: 'center'
+                                    }}
+                                >
+                                    <i className="fab fa-linkedin-in" />
+                                </a>
                             </div>
                         </div>
                         <div className="col-lg-3 col-md-6">
@@ -53,7 +101,7 @@ function Footer() {
                         </div>
                         <div className="col-lg-3 col-md-6">
                             <h4 className="text-white mb-3">Newsletter</h4>
-                            <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                            <p>Subscribe to our newsletter to get the latest updates on new flavors, special offers, and seasonal plum cake collections.</p>
                             <div className="position-relative mx-auto" style={{ maxWidth: 400 }}>
                                 <input className="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email" />
                                 <button type="button" className="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
@@ -65,9 +113,9 @@ function Footer() {
                     <div className="copyright">
                         <div className="row">
                             <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                                © <a className="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+                                © <a className="border-bottom" href="#">Plum Cake Bliss</a>, All Right Reserved.
                                 {/*/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. *** /*/}
-                                Designed By <a className="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                                Designed By <a className="border-bottom" href="https://htmlcodex.com">Sefin Geevarghese</a>
                             </div>
                             <div className="col-md-6 text-center text-md-end">
                                 <div className="footer-menu">

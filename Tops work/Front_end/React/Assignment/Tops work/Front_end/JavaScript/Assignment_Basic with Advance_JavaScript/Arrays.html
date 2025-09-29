@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Operations</title>
+</head>
+<body>
+    <h1>Array Operations</h1>
+
+    <script>
+        // Task 1: Array of fruits
+        let fruits = ["apple", "banana", "cherry"];
+        document.write("<h2>Task 1: Fruits Array</h2>");
+        document.write("Original Array: " + fruits + "<br>");
+
+        // Add a fruit to the end of the array
+        fruits.push("grape");
+        document.write("After adding a fruit (grape) to the end: " + fruits + "<br>");
+
+        // Remove the first fruit from the array
+        fruits.shift();
+        document.write("After removing the first fruit: " + fruits + "<br><br>");
+
+        // Task 2: Sum of all elements in an array of numbers
+        let numbers = [10, 20, 30, 40, 50];
+        let sum = 0;
+
+        // Calculate the sum of the array
+        for (let i = 0; i < numbers.length; i++) {
+            sum += numbers[i];
+        }
+
+        document.write("<h2>Task 2: Sum of Numbers</h2>");
+        document.write("Numbers Array: " + numbers + "<br>");
+        document.write("Sum of all numbers: " + sum);
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!--
+With HTML image maps, you can create clickable areas on an image
+
+You must define the shape of the clickable area, and you can choose one of 
+these values:
+
+rect - defines a rectangular region
+circle - defines a circular region
+poly - defines a polygonal region
+default - defines the entire region
+
+-->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Image map</h2>
+
+
+    <p>click on the cup of coffee , laptop and smartphone to open in new tap or image and read more about the topic:</p>
+
+    <img src="/Image/workplace.jpg" alt="workplace" usemap="#workmap" width="400" height="380">
+
+    <map name="workmap">
+
+
+        <area shape="rect" coords="34,44,270,350" alt="Computer" href="computer.html">
+        <area shape="rect" coords="290,172,333,250" alt="SmartPhone" href="smartphone.html">
+        <area shape="circle" coords="337,300,44" alt="Cup of coffee" href="coffee.htm">
+    </map>
+
+
+</body>
+</html>

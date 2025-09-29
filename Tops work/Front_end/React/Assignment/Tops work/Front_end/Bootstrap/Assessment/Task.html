@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Interval Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Bootstrap Datepicker CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        .date-input-container {
+            margin-bottom: 10px;
+        }
+
+        #result {
+            background-color: #3498db; /* Match the color */
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        #calculateBtn {
+            background-color: #3498db; /* Match the color */
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #calculateBtn:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Date Interval</h2>
+
+        <div class="date-input-container">
+            <label for="fromDate">From:</label>
+            <div class="input-group date" id="datetimepickerFrom">
+                <input type="text" class="form-control" id="fromDate" value="01/25/1990" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+
+        <div class="date-input-container">
+            <label for="toDate">To:</label>
+            <div class="input-group date" id="datetimepickerTo">
+                <input type="text" class="form-control" id="toDate" value="05/26/2016" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+
+        <button id="calculateBtn">Calculate</button>
+
+        <div id="result"></div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <!-- Bootstrap Datepicker JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            // Initialize datepickers
+            $('#datetimepickerFrom').datetimepicker({
+                format: 'MM/DD/YYYY'
+            });
+            $('#datetimepickerTo').datetimepicker({
+                format: 'MM/DD/YYYY'
+            });
+
+            // Calculate button click handler
+            $('#calculateBtn').click(function () {
+                // Get dates from input fields
+                var fromDateStr = $('#fromDate').val();
+                var toDateStr = $('#toDate').val();
+
+                // Validate date format
+                if (!moment(fromDateStr, 'MM/DD/YYYY', true).isValid() || !moment(toDateStr, 'MM/DD/YYYY', true).isValid()) {
+                    alert("Invalid date format. Please use MM/DD/YYYY.");
+                    console.error("Invalid date format."); // Console output
+                    return;
+                }
+
+                // Convert to moment objects
+                var fromDate = moment(fromDateStr, 'MM/DD/YYYY');
+                var toDate = moment(toDateStr, 'MM/DD/YYYY');
+
+                // Ensure 'to' date is after 'from' date
+                if (toDate.isBefore(fromDate)) {
+                    alert("To date must be after From date.");
+                    console.error("To date is before From date."); // Console output
+                    return;
+                }
+
+                // Calculate the differences
+                var years = toDate.diff(fromDate, 'years');
+                var months = toDate.diff(fromDate, 'months');
+                var weeks = toDate.diff(fromDate, 'weeks');
+                var days = toDate.diff(fromDate, 'days');
+
+                // Display the results
+                var resultText = `
+                    Date interval between ${fromDateStr} and ${toDateStr}
+                    <hr>
+                    In years : ${years}
+                    <br>
+                    In months : ${months}
+                    <br>
+                    In weeks : ${weeks}
+                    <br>
+                    In days : ${days}
+                `;
+                $('#result').html(resultText);
+
+                // Output to console
+                console.log("From Date:", fromDateStr);
+                console.log("To Date:", toDateStr);
+                console.log("Years:", years);
+                console.log("Months:", months);
+                console.log("Weeks:", weeks);
+                console.log("Days:", days);
+            });
+
+            //Initial console message
+            console.log("Date interval calculator script loaded.");
+        });
+    </script>
+</body>
+</html>

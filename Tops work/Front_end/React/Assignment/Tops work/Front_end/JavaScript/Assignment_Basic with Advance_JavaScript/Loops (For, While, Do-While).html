@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Task Examples</title>
+</head>
+<body>
+    <h1>JavaScript Task Examples</h1>
+    
+    <script>
+        // Task 1: For loop to print numbers from 1 to 10
+        document.write("<h3>Task 1: Numbers from 1 to 10</h3>");
+        for (let i = 1; i <= 10; i++) {
+            document.write(i + "<br>");
+        }
+
+        document.write("<br>");
+
+        // Task 2: While loop to sum all even numbers between 1 and 20
+        document.write("<h3>Task 2: Sum of even numbers between 1 and 20</h3>");
+        let sum = 0;
+        let i = 1;
+        while (i <= 20) {
+            if (i % 2 === 0) {
+                sum += i;
+            }
+            i++;
+        }
+        document.write("Sum of even numbers between 1 and 20: " + sum + "<br>");
+
+        document.write("<br>");
+
+        // Task 3: Do-while loop to ask the user for input until they enter a number greater than 10
+        document.write("<h3>Task 3: User Input for Number Greater than 10</h3>");
+        let number;
+        do {
+            number = prompt("Please enter a number greater than 10:");
+        } while (number <= 10);
+        document.write("You entered a number greater than 10: " + number + "<br>");
+    </script>
+</body>
+</html>
