@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Operators with If-Else</title>
+    <style>
+        .result { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Operators Results</h1>
+
+    <div class="result" id="additionResult"></div>
+    <div class="result" id="subtractionResult"></div>
+    <div class="result" id="multiplicationResult"></div>
+    <div class="result" id="divisionResult"></div>
+    <div class="result" id="isEqualResult"></div>
+    <div class="result" id="isAGreaterResult"></div>
+    <div class="result" id="conditionResult"></div>
+
+    <script>
+        // Declare two numbers
+        let a = 20;
+        let b = 5;
+
+        // Perform arithmetic operations
+        let addition = a + b;
+        let subtraction = a - b;
+        let multiplication = a * b;
+        let division = a / b;
+
+        // Display arithmetic results on the page
+        document.getElementById('additionResult').innerText = "Addition: " + addition;
+        document.getElementById('subtractionResult').innerText = "Subtraction: " + subtraction;
+        document.getElementById('multiplicationResult').innerText = "Multiplication: " + multiplication;
+        document.getElementById('divisionResult').innerText = "Division: " + division;
+
+        // Perform comparison operations and display results
+        if (a == b) {
+            document.getElementById('isEqualResult').innerText = "Are a and b equal? Yes";
+        } else {
+            document.getElementById('isEqualResult').innerText = "Are a and b equal? No";
+        }
+
+        if (a > b) {
+            document.getElementById('isAGreaterResult').innerText = "Is a greater than b? Yes";
+        } else {
+            document.getElementById('isAGreaterResult').innerText = "Is a greater than b? No";
+        }
+
+        // Perform logical operations and display results
+        if (a > 10 && b < 10) {
+            document.getElementById('conditionResult').innerText = "Is a > 10 and b < 5? Yes";
+        } else {
+            document.getElementById('conditionResult').innerText = "Is a > 10 and b < 10? No";
+        }
+    </script>
+</body>
+</html>

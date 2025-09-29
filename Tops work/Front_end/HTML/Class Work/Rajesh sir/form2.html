@@ -1,0 +1,138 @@
+<html>
+<head>
+
+      <title>Registration page</title>
+	  
+	  <style>
+        header {
+            display: flex;
+            align-items: center;
+            color: blue;
+        }
+        div{
+            
+            width: 600px;
+            border: 0px solid BLACK;
+            background-color: aliceblue;
+            border-radius: 5px;
+            padding: 50px;
+            margin: 50px;
+            justify-items: center;
+            
+        }
+    
+    </style>
+
+
+</head>
+
+<body>
+
+    <div>
+
+    <header>
+    <img src="logo1.png" alt="logo" class="logo" height="50px" width="50px"/> 
+    <h1>Employee Registration Form</h1>
+</header>
+
+<form method="post">
+
+    <table cellspacing="8">
+    <tr> 
+        <td></td> 
+         <td>
+        <input type="radio" name="status" value="Mr" checked>Mr.
+        <input type="radio" name="status" value="Mrs">Mrs.
+        <input type="radio" name="status" value="Ms">Ms.
+        </td>
+        </tr>
+    <tr>
+        <td> First Name </td>
+        <td> <input type="text" name="name" placeholder="First Name"> </td>
+    </tr>
+
+    <tr>
+        <td> Last Name</td>
+        <td> <input type="text" name="name" placeholder="Last Name"> </td>
+    </tr>
+
+    <tr>
+        <td> Mail Address1</td>
+        <td><input type="text" name="address1"></td>
+    </tr>
+
+<tr>
+    <td> Mail Address2</td>
+    <td><input type="text" name="address2"></td>
+</tr>
+
+<tr>
+    <td> City</td>
+    <td><input type="text" name="city"></td>
+</tr>
+
+<tr>
+    <td> State </td>
+    <td> 
+        <select id="State" name="state">
+            <option value="Gujrat"> Gujrat </option>
+            <option value="Mumbai"> Mumbai </option>
+            <option value="Delhi"> Delhi </option>
+            <option value="Hyedrabad"> Hyedrabad </option>
+            <option value="Jammu & Kashmir"> Jammu & Kashmir </option>
+        </select>
+    </td>
+
+    <tr>
+        <td> Zip</td>
+        <td><input type="text" name="Zip"></td>
+    </tr>
+
+    <tr>
+        <td>Upload Photo</td>
+        <td> <input type="file" name="file"> </td>
+    </tr>
+
+    <tr>
+        <td>E-mail</td>
+        <td> <input type="email" name="email"> </td>
+    </tr>
+
+    <tr>
+        <td> Mobile </td>
+        <td> <input type="number" name="mobole" placeholder="+91" </td>
+    </tr>
+
+    <tr>
+        <td> Languages known </td>
+        <td>
+            <input type="checkbox" name="languages" val="Gujrati" checked>Gujrati <br>
+            <input type="checkbox" name="languages" val="Hindi" checked>Hindi <br>
+            <input type="checkbox" name="languages" val="English" checked>English <br>
+            <input type="checkbox" name="languages" val="Marathi">Marathi
+        </td>
+    </tr>
+
+    <tr>
+        <td>Additional Information</td>
+        <td> <textarea name="information" cols="30" rows="5" placeholder="Optional"></textarea> </td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td>
+            <input type="button" name="submit"  value="Submit">
+            <input type="reset">
+        </td>
+    </tr>
+
+
+</table>
+    
+</form> 
+
+</div>
+
+</body>
+
+</html>   

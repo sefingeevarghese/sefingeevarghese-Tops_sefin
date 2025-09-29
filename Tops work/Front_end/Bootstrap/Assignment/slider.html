@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Slider - Big Screen</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Custom Styles */
+    body {
+      margin: 0; /* Remove default body margins */
+      overflow: hidden; /* Hide scrollbars */
+    }
+
+    .slider-container {
+      background-color: #34495e;  /* Background Color from the image */
+      height: 100vh; /* Full viewport height */
+      width: 100vw;  /* Full viewport width */
+      display: flex;
+      align-items: center; /* Vertically center the carousel */
+      justify-content: center; /* Horizontally center the carousel */
+    }
+
+    .carousel {
+      max-width: 1200px; /* Increased max width for larger screen */
+      width: 80%; /* Adjust as needed, responsive width */
+    }
+
+    .carousel-inner {
+      position: relative;
+    }
+
+    .carousel-item {
+      text-align: center;
+      padding: 25vh 0; /* Use viewport height unit to adjust to screen sizes */
+    }
+
+    .slide-button {
+      background-color: #20c997; /* Button Color from the image */
+      color: white;
+      padding: 20px 120px; /* Increased padding for larger screen */
+      border: none;
+      font-size: 32px; /* Increased font size for larger screen */
+      cursor: pointer;
+      box-shadow: 0 10px 12px rgba(0, 0, 0, 0.2); /* Shadow effect */
+      display: inline-block; /* Correctly centers the button */
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .carousel-indicators {
+      position: absolute;
+      bottom: 30px; /* Adjust as needed */
+      left: 0;
+      right: 0;
+      width: 100%; /* Make indicators span the entire width */
+      margin-left: 0;
+      display: flex;
+      justify-content: center; /* Center the indicators */
+    }
+
+    .carousel-indicators li {
+      width: 30px;
+      height: 4px;
+      border-radius: 0; /* Make indicators line type */
+      background-color: #ddd;
+      border: none;
+      margin: 0 10px; /* Spacing between indicators */
+      transition: background-color 0.3s ease; /* Smooth transition */
+    }
+
+    .carousel-indicators .active {
+      background-color: #fff; /* Active indicator color */
+    }
+
+     .carousel-control-prev,
+     .carousel-control-next {
+          width: auto;
+          opacity: 0.7;
+          font-size: 2em; /* Adjust the size of the arrow */
+          color: #ddd;
+      }
+
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+          background-image: none; /* Remove default arrow icons */
+          color: #ddd; /*Arrow Color*/
+      }
+
+      .carousel-control-prev-icon:before {
+            content: "\2039"; /* Left arrow character */
+            font-size: 4em; /* Adjust the size of the arrow */
+            color: #ddd; /*Arrow Color*/
+        }
+
+        .carousel-control-next-icon:before {
+            content: "\203A"; /* Right arrow character */
+            font-size: 4em; /* Adjust the size of the arrow */
+            color: #ddd; /*Arrow Color*/
+        }
+  </style>
+</head>
+<body>
+
+  <div class="slider-container">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+            <a href="#" class="slide-button">SLIDE 1</a>
+        </div>
+        <div class="carousel-item">
+          <a href="#" class="slide-button">SLIDE 2</a>
+        </div>
+        <div class="carousel-item">
+          <a href="#" class="slide-button">SLIDE 3</a>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+
+
+$tc:#078357;
+$bg: #e901ce;
+$tf:Helvetica, sans-serif;
+$ts:15px;
+
+.sassbox{
+    width: 100px;
+    height: 100px;
+    color:$tc;
+    background-color: $bg;
+    font-family: $tf;
+    font-size: $ts;
+}
+
+
+
+
+//in sass nested css 
+
+nav {
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    li {
+      display: inline-block;
+    }
+    a {
+      display: block;
+      padding: 6px 12px;
+      text-decoration: none;
+      background-color: $bg;
+      color: $tc;
+    }
+  }
+
+
+  h2{
+    font: {
+      family: Helvetica, sans-serif;
+      size: 18px;
+      weight: bold;
+    }
+    text: {
+      align: center;
+      transform: lowercase;
+      overflow: hidden;
+      decoration: underline;
+    }      
+}
+
+
+.button-basic  {
+    border: none;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+  }
+
+.red{
+    @extend .button-basic;
+    background-color: #ff0000;
+}  
+
+.blue{
+    @extend .button-basic;
+    background-color: #0d00ff;
+}  
+
+.yellow{
+    @extend .button-basic;
+    background-color: #eed707;
+} 
+
+.orange{
+    @extend .button-basic;
+    background-color: #ee8a07;
+}

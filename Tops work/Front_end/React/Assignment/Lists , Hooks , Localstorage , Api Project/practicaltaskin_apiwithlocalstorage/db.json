@@ -1,0 +1,58 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "password": "password123",
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "lastLogin": "2025-08-08T11:07:00.080Z"
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "password": "password123",
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "lastLogin": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "633c",
+      "name": "Sefin Geevarghese",
+      "email": "admin@tops.com",
+      "password": "tops123",
+      "createdAt": "2025-08-08T10:46:20.227Z",
+      "lastLogin": "2025-08-11T11:59:39.876Z"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "title": "First Post",
+      "content": "This is the first post content",
+      "userId": 1,
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "title": "Second Post",
+      "content": "This is the second post content",
+      "userId": 2,
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "fbf0",
+      "title": "A very excitement day today",
+      "content": "Happy Rakshabandhan",
+      "userId": "633c",
+      "createdAt": "2025-08-08T10:47:35.491Z",
+      "updatedAt": "2025-08-08T10:55:26.466Z"
+    },
+    {
+      "title": "Special Burger KING ",
+      "content": "20% off discount buy now",
+      "createdAt": "2025-08-18T11:59:35.227Z",
+      "id": "UEOS2pI"
+    }
+  ]
+}

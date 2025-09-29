@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background: url('Images/pexels-expressivestanley-1454360.jpg') no-repeat center center/cover;
+}
+
+.hero {
+    background: #f8f9fa;
+}
+
+.courses .card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.courses .card:hover {
+    transform: scale(1.05);
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+}

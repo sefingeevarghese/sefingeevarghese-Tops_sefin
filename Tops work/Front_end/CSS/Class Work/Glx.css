@@ -1,0 +1,157 @@
+/* General setup */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: black;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Twinkling stars */
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(black, rgba(0, 0, 0, 0)), 
+                url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.8;
+    z-index: 0;
+    animation: starsTwinkle 5s infinite ease-in-out;
+}
+
+/* Solar system container */
+.solar-system {
+    position: relative;
+    width: 800px;
+    height: 800px;
+}
+
+/* The Sun */
+.sun {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, yellow, orange, red);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 50px rgba(255, 165, 0, 0.8);
+}
+
+/* Orbits */
+.orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin 20s linear infinite;
+}
+
+/* Planet Styling */
+.planet {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+/* Individual planets */
+.mercury {
+    width: 10px;
+    height: 10px;
+    background: gray;
+}
+
+.venus {
+    width: 18px;
+    height: 18px;
+    background: #c1a357;
+}
+
+.earth {
+    width: 20px;
+    height: 20px;
+    background: blue;
+    box-shadow: 0 0 10px rgba(0, 0, 255, 0.8);
+}
+
+.mars {
+    width: 15px;
+    height: 15px;
+    background: red;
+}
+
+.jupiter {
+    width: 40px;
+    height: 40px;
+    background: orange;
+}
+
+.saturn {
+    width: 35px;
+    height: 35px;
+    background: goldenrod;
+}
+
+.ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 55px;
+    height: 55px;
+    border: 2px solid rgba(200, 200, 100, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.uranus {
+    width: 25px;
+    height: 25px;
+    background: lightblue;
+}
+
+.neptune {
+    width: 30px;
+    height: 30px;
+    background: darkblue;
+}
+
+/* Orbits for each planet */
+.mercury-orbit { width: 120px; height: 120px; animation-duration: 7s; }
+.venus-orbit { width: 180px; height: 180px; animation-duration: 10s; }
+.earth-orbit { width: 240px; height: 240px; animation-duration: 13s; }
+.mars-orbit { width: 300px; height: 300px; animation-duration: 16s; }
+.jupiter-orbit { width: 380px; height: 380px; animation-duration: 20s; }
+.saturn-orbit { width: 460px; height: 460px; animation-duration: 25s; }
+.uranus-orbit { width: 540px; height: 540px; animation-duration: 30s; }
+.neptune-orbit { width: 620px; height: 620px; animation-duration: 35s; }
+
+/* Orbit animation */
+@keyframes spin {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Twinkling animation */
+@keyframes starsTwinkle {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+}
